@@ -4,8 +4,6 @@ This was a multi-million-dollar idea to design an application for monitoring, ma
 
 **Shuhan Dong**
 
-### Creative addition 
-
 ## License
 
 This project is licensed under the **MIT License**.
