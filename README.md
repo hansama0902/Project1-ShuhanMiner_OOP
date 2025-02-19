@@ -79,7 +79,12 @@ npm test
 - Mock modules simulate mining machine behavior for reliability.
 
 ---
-
+## **AI Usage**
+This project has integrated AI assistance in the following ways:
+1. **Test File Design:** ChatGPT 4o was used to help design structured and efficient test cases.
+2. **JSDoc Example Creation:** ChatGPT 4o was used to generate an example JSDoc structure for documentation.
+3. **Observer Pattern Example:** ChatGPT 4o assisted in finding an effective Observer Pattern example for notification handling.  
+---
 ## License
 
 This project is licensed under the **MIT License**.
