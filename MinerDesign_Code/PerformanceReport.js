@@ -9,7 +9,7 @@ export class PerformanceReport extends MonitoringReport {
 
     /**
      * @constructor
-     * @param {import('./MonitoringSystem.js').default} monitoringSystem - The monitoring system instance.
+     * @param {MonitoringSystem} monitoringSystem - The monitoring system instance.
      */
     constructor(monitoringSystem) {
         super(monitoringSystem);

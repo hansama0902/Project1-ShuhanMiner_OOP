@@ -11,7 +11,7 @@ export class MonitoringReport {
 
     /**
      * @constructor
-     * @param {import('./MonitoringSystem.js').default} monitoringSystem - The monitoring system instance.
+     * @param {MonitoringSystem}} monitoringSystem - The monitoring system instance.
      */
     constructor(monitoringSystem) {
         if (new.target === MonitoringReport) {
@@ -29,9 +29,9 @@ export class MonitoringReport {
     }
 
     /**
-     * Retrieves the monitoring system instance.
-     * @returns {import('./MonitoringSystem.js').default} - The monitoring system instance.
-     */
+    * Retrieves the monitoring system instance.
+    * @returns {MonitoringSystem} - The monitoring system instance.
+    */
     getMonitoringSystem() {
         return this.#monitoringSystem;
     }

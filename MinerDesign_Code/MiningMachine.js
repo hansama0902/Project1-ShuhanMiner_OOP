@@ -53,7 +53,6 @@ export default class MiningMachine {
                 Alerts: ${this.#alerts.length > 0 ? this.#alerts.join(", ") : "No alerts"}`;
     }
     
-
     /**
      * Simulates a mining machine restart asynchronously.
      * @returns {Promise<boolean>} - Resolves `true` if restart succeeds, `false` otherwise.
@@ -73,6 +72,10 @@ export default class MiningMachine {
 
     /**
      * Checks for high temperature and triggers an alert if necessary.
+     * Updates the high-temperature mode status.
+     * If temperature exceeds threshold, adds an alert.
+     * 
+     * @returns {void} - No return value.
      */
     checkTemperature() {
         if (this.#temperature > MiningMachine.TEMPERATURE_THRESHOLD) {
@@ -90,10 +93,11 @@ export default class MiningMachine {
     
     /**
      * Adds an alert message to the alert list.
+     * 
      * @param {string} message - The alert message.
+     * @returns {void}
      */
     addAlert(message) {
         this.#alerts.push(message);
     }
-
 }

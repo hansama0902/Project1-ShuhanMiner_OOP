@@ -10,7 +10,7 @@ export class MonitoringReportFactory {
     /**
      * Generates a specific type of monitoring report.
      * @param {string} type - The type of report ("financial", "performance", "maintenance").
-     * @param {import('./MonitoringSystem.js').default} monitoringSystem - The monitoring system instance.
+     * @param {MonitoringSystem} monitoringSystem - The monitoring system instance.
      * @returns {MonitoringReport} - A new report instance.
      * @throws {Error} If an invalid report type is provided.
      */

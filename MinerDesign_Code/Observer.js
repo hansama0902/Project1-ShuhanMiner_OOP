@@ -21,11 +21,11 @@
 
 export class Observer {
     /**
-     * Receives notification.
-     * @param {Notification} notification - The received notification.
-     */
+ * Receives notification.
+ * @param {Notification} notification - The received notification.
+ * @throws {Error} If the method is not implemented.
+ */
     receiveNotification(notification) {
-        console.log(`Unused parameter: ${notification}`);
         throw new Error("Method 'update' must be implemented.");
     }
 }

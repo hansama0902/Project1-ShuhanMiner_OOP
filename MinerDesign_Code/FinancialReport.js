@@ -9,13 +9,14 @@ export class FinancialReport extends MonitoringReport {
     #revenue;
 
     /**
-     * @constructor
-     * @param {import('./MonitoringSystem.js').default} monitoringSystem - The monitoring system instance.
-     */
+    * @constructor
+    * @param {MonitoringSystem} monitoringSystem - The monitoring system instance.
+    */
     constructor(monitoringSystem) {
         super(monitoringSystem);
         this.#calculateMetrics();
     }
+
 
     /**
      * Calculates financial metrics (total hashrate, electricity cost, revenue).

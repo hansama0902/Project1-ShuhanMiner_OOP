@@ -28,17 +28,24 @@ export default class MonitoringSystem {
         }
         return MonitoringSystem.#instance;
     }
+    /**
+     * Retrieves all monitored mining machines.
+     * @returns {Array} - List of all mining machines.
+     */
     getMiningMachines() {
         return this.#miningMachines;
     }
-
+    /**
+     * Retrieves all overheated mining machines.
+     * @returns {Array} - List of overheated mining machines.
+     */
     getOverheatedMachines() {
         return this.#overheatedMachines;
     }
 
     /**
      * Adds a mining machine to monitoring.
-     * @param {import('./MiningMachine.js').default} machine - The mining machine to be monitored.
+     * @param {Object} machine - The mining machine to be monitored.
      * @returns {void}
      */
     addMachine(machine) {
@@ -60,7 +67,7 @@ export default class MonitoringSystem {
         }
     }
 
-    /**
+   /**
      * Diagnoses machine faults and sets the fault type.
      * @returns {void}
      */
@@ -74,7 +81,7 @@ export default class MonitoringSystem {
         }
     }
 
-    /**
+   /**
      * Updates the firmware for all mining machines.
      * @param {string} newVersion - The new firmware version.
      * @returns {void}
@@ -99,16 +106,10 @@ export default class MonitoringSystem {
     }
     /**
      * 
-     *  For testing purposes, this method clears all monitored machines.
+     *  
      */
     clearMachines() {
         this.#miningMachines = [];
-    }
-
-    /**
-     * Retrieves all monitored machines.
-     * @returns {import('./MiningMachine.js').default[]} - List of all mining machines.
-     */
-   
+    }   
 }
 
