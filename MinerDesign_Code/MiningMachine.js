@@ -5,6 +5,11 @@
  * Adheres to:
  * - **Open-Closed Principle**: Allows extensions for specific mining models.
  * - **Liskov Substitution Principle**: Enables subclass interchangeability.
+ * 
+* AI Usage:
+ * Model: ChatGPT 4o
+ * Prompts: Can you give me an example of a JSDoc document? I want to use it to document my code.
+ * How it was used:I used the generated code to create a JSDoc document.
  */
 export class MiningMachine {
     #ipAddress;
