@@ -40,6 +40,12 @@ To run Jest tests:
 ```bash
 npm test
 ```
+### **4. View JSDoc Documentation**  
+
+To open the `out/index.html` in your browser:
+```bash
+npx http-server out 
+```
 
 ---
 
