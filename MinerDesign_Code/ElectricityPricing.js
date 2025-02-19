@@ -34,7 +34,7 @@ export class ElectricityPricing {
         this.#currentPrice = newPrice;
         this.#priceHistory.push(newPrice);
 
-        console.log(`⚡ Electricity Price Updated: $${newPrice.toFixed(2)}`);
+        console.log(`Electricity Price Updated: $${newPrice.toFixed(2)}`);
 
         if (newPrice > this.#costThreshold) {
             this.#triggerShutdownAlert(users);
@@ -49,7 +49,7 @@ export class ElectricityPricing {
      * Triggers an alert when electricity cost exceeds the threshold.
      */
     #triggerShutdownAlert(users) {
-        console.log("🔔 ElectricityPricing triggering Alert...");
+        console.log("ElectricityPricing triggering Alert...");
         const alert = new Alert(
             "Electricity Pricing",
             "Critical",

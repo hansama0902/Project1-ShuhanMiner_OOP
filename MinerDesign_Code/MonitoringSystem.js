@@ -54,6 +54,7 @@ export class MonitoringSystem {
     addMachine(machine) {
         if (!this.#miningMachines.some(m => m.ipAddress === machine.ipAddress)) {
             this.#miningMachines.push(machine);
+            console.log(` Machine ${machine.model} with IP ${machine.ipAddress} added successfully.`);
         } else {
             console.log(`Machine with IP ${machine.ipAddress} is already in the system.`);
         }

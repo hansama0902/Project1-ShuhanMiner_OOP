@@ -21,9 +21,6 @@ describe("Notification Class Tests", () => {
         notification = new Notification("notif-123", "System Update Available", mockTimestamp, mockUser);
     });
 
-    /**
-     * 测试 `Notification` 是否正确初始化
-     */
     test("Should initialize with correct properties", () => {
         expect(notification.getId()).toBe("notif-123");
         expect(notification.getContent()).toBe("System Update Available");
@@ -31,9 +28,7 @@ describe("Notification Class Tests", () => {
         expect(notification.getUser()).toBe(mockUser);
     });
 
-    /**
-     * 测试 `getNotificationDetails()` 方法
-     */
+   
     test("Should return correct notification details", () => {
         const details = notification.getNotificationDetails();
         expect(details).toEqual({
@@ -44,16 +39,12 @@ describe("Notification Class Tests", () => {
         });
     });
 
-    /**
-     * 测试 `getUser()` 是否返回正确的用户实例
-     */
+  
     test("Should return the assigned user", () => {
         expect(notification.getUser()).toBe(mockUser);
     });
 
-    /**
-     * 测试 `getUser()` 当用户为空时
-     */
+  
     test("Should return null if no user is assigned", () => {
         const notifWithoutUser = new Notification("notif-456", "No user assigned", new Date());
         expect(notifWithoutUser.getUser()).toBeNull();

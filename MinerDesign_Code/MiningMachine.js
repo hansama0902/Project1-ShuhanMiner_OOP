@@ -34,7 +34,7 @@ export class MiningMachine {
      */
     constructor(ipAddress, hashRate, temperature, model, status, highTemperatureMode) {
         this.#ipAddress = ipAddress;
-        this.#hashRate = hashRate;
+        this.#hashRate = Number(hashRate) || 0;;
         this.#temperature = temperature;
         this.#model = model;
         this.#status = status;
@@ -103,5 +103,28 @@ export class MiningMachine {
      */
     addAlert(message) {
         this.#alerts.push(message);
+    }
+    get ipAddress() {
+        return this.#ipAddress;
+    }
+
+    get hashRate() {
+        return this.#hashRate;
+    }
+
+    get temperature() {
+        return this.#temperature;
+    }
+
+    get model() {
+        return this.#model;
+    }
+
+    get status() {
+        return this.#status;
+    }
+
+    get highTemperatureMode() {
+        return this.#highTemperatureMode;
     }
 }

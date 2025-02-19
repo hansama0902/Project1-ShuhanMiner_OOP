@@ -36,7 +36,7 @@ export class User extends Observer {
             throw new Error("Invalid notification object. Expected { content: string }.");
         }
         this.#notifications.push(notification);
-        console.log(`📩 User ${this.#userId} received notification: ${notification.content}`);
+        console.log(`User ${this.#userId} received notification: ${notification.content}`);
     }
 
     /**
