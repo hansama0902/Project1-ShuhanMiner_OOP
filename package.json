@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "This was a multi-million-dollar idea to design an application for monitoring, managing, and maintaining mining machines. ## Author",
   "type": "module",
+  "jest": {
+    "transform": {}
+  },
   "directories": {
     "test": "tests"
   },

@@ -1,5 +1,5 @@
-import FinancialReport from "./FinancialReport.js";
-import PerformanceReport from "./PerformanceReport.js";
+import {FinancialReport} from "./FinancialReport.js";
+import {PerformanceReport} from "./PerformanceReport.js";
 /**
  * @class MonitoringReportFactory
  * @description Factory for generating different types of monitoring reports.

@@ -90,6 +90,20 @@ export default class MonitoringSystem {
         }
         console.log(`Updating firmware to version ${newVersion}...`);
     }
+    /**
+     * 
+     * @returns {Array} - List of all mining machines.
+     */
+    getMachines() {
+        return this.#miningMachines;
+    }
+    /**
+     * 
+     *  For testing purposes, this method clears all monitored machines.
+     */
+    clearMachines() {
+        this.#miningMachines = [];
+    }
 
     /**
      * Retrieves all monitored machines.

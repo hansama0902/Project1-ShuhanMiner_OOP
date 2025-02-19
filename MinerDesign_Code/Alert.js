@@ -6,7 +6,7 @@
  * Implements:
  * - **Encapsulation**: Uses private fields for data protection.
  */
-import User from "./User.js";
+import { User } from "./User.js";
 export default class Alert {
     #alertType;
     #alertLevel;
@@ -34,9 +34,16 @@ export default class Alert {
      * @param {User[]} users - List of users to notify.
      */
     trigger(users) {
-        console.log(`⚠ Alert Triggered: ${this.#alertType} - Level: ${this.#alertLevel}`);
+        console.log(`Alert Triggered: ${this.#alertType} - Level: ${this.#alertLevel}`);
+    
+        if (!Array.isArray(users) || users.length === 0) {
+            console.warn("No users to notify.");
+            return;
+        }
+        
         this.notifyUsers(users);
     }
+    
 
     /**
      * Notifies users about the alert.
@@ -45,11 +52,16 @@ export default class Alert {
     notifyUsers(users) {
         users.forEach(user => {
             if (user instanceof User) {
-                user.receiveNotification(this);
-                this.#notifiedUsers.push(user);
+                const notification = {
+                    content: `Alert: ${this.#alertType} - Level: ${this.#alertLevel}`,
+                    timestamp: this.#timestamp
+                };
+                user.receiveNotification(notification); 
+                this.#notifiedUsers.push(user.getUserId());
             }
         });
     }
+    
 
     /**
      * Retrieves alert details.
@@ -61,7 +73,8 @@ export default class Alert {
             level: this.#alertLevel,
             timestamp: this.#timestamp,
             triggeredBy: this.#triggeredBy,
-            notifiedUsers: this.#notifiedUsers.map(user => user.userId),
+            notifiedUsers: [...this.#notifiedUsers], 
         };
     }
+    
 }

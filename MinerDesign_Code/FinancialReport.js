@@ -2,7 +2,7 @@
  * @class FinancialReport
  * @description Provides financial insights on mining operations.
  */
-import MonitoringReport from './MonitoringReport.js';
+import { MonitoringReport } from './MonitoringReport.js';;
 export class FinancialReport extends MonitoringReport {
     #totalHashrate;
     #electricityCost;

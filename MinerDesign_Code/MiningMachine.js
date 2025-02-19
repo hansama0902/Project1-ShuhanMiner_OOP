@@ -78,9 +78,9 @@ export default class MiningMachine {
         if (this.#temperature > MiningMachine.TEMPERATURE_THRESHOLD) {
             if (!this.#highTemperatureMode) {
                 this.#highTemperatureMode = true;
-                const alertMessage = `⚠ High temperature alert! Machine ${this.#model} at ${this.#ipAddress} is at ${this.#temperature}°C.`;
+                const alertMessage = `High temperature alert! Machine ${this.#model} at ${this.#ipAddress} is at ${this.#temperature}°C.`;
                 
-                console.warn(alertMessage);
+                console.log(alertMessage);
                 this.addAlert(alertMessage);
             }
         } else {

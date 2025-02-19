@@ -45,14 +45,19 @@ export default class ElectricityPricing {
      * @private
      */
     #triggerShutdownAlert(users) {
+        console.log("🔔 ElectricityPricing triggering Alert...");
         const alert = new Alert(
             "Electricity Pricing",
             "Critical",
             new Date(),
             "ElectricityPricing"
         );
+        console.log("Created Alert instance...");
         alert.trigger(users);
+        console.log("Alert.trigger() called!");
     }
+    
+
 
     /**
      * Displays the current electricity price.
