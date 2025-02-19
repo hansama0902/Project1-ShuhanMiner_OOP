@@ -1,4 +1,3 @@
-
 /**
  * @class Alert
  * @description Represents an alert triggered by a mining machine or electricity pricing.
@@ -7,7 +6,7 @@
  * - **Encapsulation**: Uses private fields for data protection.
  */
 import { User } from "./User.js";
-export default class Alert {
+export class Alert {
     #alertType;
     #alertLevel;
     #timestamp;
@@ -30,8 +29,10 @@ export default class Alert {
     }
 
     /**
-     * Triggers the alert and notifies all subscribed users.
+     * @function trigger()
      * @param {User[]} users - List of users to notify.
+     * @returns {void}
+     * Triggers the alert and notifies all subscribed users.
      */
     trigger(users) {
         console.log(`Alert Triggered: ${this.#alertType} - Level: ${this.#alertLevel}`);
@@ -46,8 +47,10 @@ export default class Alert {
     
 
     /**
-     * Notifies users about the alert.
+     * @function notifyUsers()
      * @param {User[]} users - Users to be notified.
+     * @returns {void}
+     * Notifies users about the alert.
      */
     notifyUsers(users) {
         users.forEach(user => {
@@ -64,8 +67,10 @@ export default class Alert {
     
 
     /**
-     * Retrieves alert details.
+     * 
+     * @function retrieveDetails()
      * @returns {object} - Alert details.
+     * Retrieves alert details.
      */
     retrieveDetails() {
         return {

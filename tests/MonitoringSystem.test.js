@@ -6,7 +6,7 @@
  * How it was used: I used the generated code to design a test suite for the MonitoringSystem class.
  */ 
 import { jest } from "@jest/globals";
-import MonitoringSystem from '../MinerDesign_Code/MonitoringSystem.js';
+import { MonitoringSystem } from '../MinerDesign_Code/MonitoringSystem.js';
 
 describe("MonitoringSystem Tests", () => {
     let monitoringSystem;

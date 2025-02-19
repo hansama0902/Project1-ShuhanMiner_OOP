@@ -6,7 +6,7 @@
  * - **Singleton Pattern**: Ensures only one instance manages all mining machines.
  * - **Encapsulation**: Uses private fields to protect data integrity.
  */
-export default class MonitoringSystem {
+export class MonitoringSystem {
     static #instance; // Private static instance for Singleton
 
     #miningMachines;
@@ -29,24 +29,27 @@ export default class MonitoringSystem {
         return MonitoringSystem.#instance;
     }
     /**
-     * Retrieves all monitored mining machines.
+     * @function  getMiningMachines()
      * @returns {Array} - List of all mining machines.
+     * Retrieves all monitored mining machines.
      */
     getMiningMachines() {
         return this.#miningMachines;
     }
     /**
-     * Retrieves all overheated mining machines.
+     * @function getOverheatedMachines()
      * @returns {Array} - List of overheated mining machines.
+     * Retrieves all overheated mining machines.
      */
     getOverheatedMachines() {
         return this.#overheatedMachines;
     }
 
     /**
-     * Adds a mining machine to monitoring.
+     * @function addMachine()
      * @param {Object} machine - The mining machine to be monitored.
      * @returns {void}
+     * Adds a mining machine to monitoring.
      */
     addMachine(machine) {
         if (!this.#miningMachines.some(m => m.ipAddress === machine.ipAddress)) {
@@ -57,8 +60,9 @@ export default class MonitoringSystem {
     }
 
     /**
-     * Monitors temperature and updates overheated machines.
+     * @function monitorTemperature()
      * @returns {void}
+     * Monitors temperature and updates overheated machines.
      */
     monitorTemperature() {
         this.#overheatedMachines = this.#miningMachines.filter(machine => machine.temperature > 80);
@@ -68,8 +72,9 @@ export default class MonitoringSystem {
     }
 
    /**
-     * Diagnoses machine faults and sets the fault type.
+     * @function faultDiagnosis()
      * @returns {void}
+     * Diagnoses machine faults and sets the fault type.
      */
     faultDiagnosis() {
         const faultyMachines = this.#miningMachines.filter(machine => machine.status === "Failed");
@@ -82,9 +87,10 @@ export default class MonitoringSystem {
     }
 
    /**
-     * Updates the firmware for all mining machines.
+     * @function firmwareUpdate()
      * @param {string} newVersion - The new firmware version.
      * @returns {void}
+     * Updates the firmware for all mining machines.
      */
     firmwareUpdate(newVersion) {
         if (typeof newVersion !== "string" || !newVersion.trim()) {
@@ -98,14 +104,14 @@ export default class MonitoringSystem {
         console.log(`Updating firmware to version ${newVersion}...`);
     }
     /**
-     * 
+     * @function  getMachines()
      * @returns {Array} - List of all mining machines.
      */
     getMachines() {
         return this.#miningMachines;
     }
     /**
-     * 
+     * @function clearMachines()
      *  
      */
     clearMachines() {

@@ -1,5 +1,3 @@
-import Alert from "./Alert.js";
-
 /**
  * @class ElectricityPricing
  * @description Monitors electricity price fluctuations and triggers alerts if thresholds are exceeded.
@@ -7,7 +5,8 @@ import Alert from "./Alert.js";
  * Implements:
  * - **Encapsulation**: Uses private fields for data protection.
  */
-export default class ElectricityPricing {
+import { Alert } from "./Alert.js";
+export class ElectricityPricing {
     #currentPrice;
     #costThreshold;
     #priceHistory;
@@ -16,6 +15,7 @@ export default class ElectricityPricing {
      * @constructor
      * @param {number} initialPrice - The initial electricity price.
      * @param {number} costThreshold - The maximum acceptable price before triggering an alert.
+     * @param {number[]} priceHistory - The history of electricity prices.
      */
     constructor(initialPrice, costThreshold) {
         this.#currentPrice = initialPrice;
@@ -24,9 +24,11 @@ export default class ElectricityPricing {
     }
 
     /**
-     * Updates the electricity price and checks for fluctuations.
+     * @function monitorFluctuations()
      * @param {number} newPrice - The updated electricity price.
      * @param {User[]} users - List of users to notify if an alert is triggered.
+     * @returns {void}
+     * Updates the electricity price and checks for fluctuations.
      */
     monitorFluctuations(newPrice, users) {
         this.#currentPrice = newPrice;
@@ -40,9 +42,11 @@ export default class ElectricityPricing {
     }
 
     /**
-     * Triggers an alert when electricity cost exceeds the threshold.
+     * @function triggerShutdownAlert()
      * @param {User[]} users - List of users to notify.
      * @private
+     * @returns {void}
+     * Triggers an alert when electricity cost exceeds the threshold.
      */
     #triggerShutdownAlert(users) {
         console.log("🔔 ElectricityPricing triggering Alert...");
@@ -60,6 +64,8 @@ export default class ElectricityPricing {
 
 
     /**
+     * @function displayPrice()
+     * @returns {void}
      * Displays the current electricity price.
      */
     displayPrice() {
@@ -67,8 +73,9 @@ export default class ElectricityPricing {
     }
 
     /**
-     * Retrieves price history.
+     * @function getPriceHistory()
      * @returns {number[]} - The list of past electricity prices.
+     * Retrieves price history.
      */
     getPriceHistory() {
         return [...this.#priceHistory];

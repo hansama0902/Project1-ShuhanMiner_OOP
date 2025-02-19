@@ -7,7 +7,7 @@
  */ 
 
 import { jest } from "@jest/globals";
-import MonitoringSystem from "../MinerDesign_Code/MonitoringSystem.js";
+import { MonitoringSystem } from "../MinerDesign_Code/MonitoringSystem.js";
 import { PerformanceReport } from "../MinerDesign_Code/PerformanceReport.js";
 
 /**

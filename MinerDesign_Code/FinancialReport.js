@@ -1,13 +1,13 @@
 /**
  * @class FinancialReport
  * @description Provides financial insights on mining operations.
+ * @extends {MonitoringReport}
  */
 import { MonitoringReport } from './MonitoringReport.js';;
 export class FinancialReport extends MonitoringReport {
     #totalHashrate;
     #electricityCost;
     #revenue;
-
     /**
     * @constructor
     * @param {MonitoringSystem} monitoringSystem - The monitoring system instance.
@@ -19,8 +19,10 @@ export class FinancialReport extends MonitoringReport {
 
 
     /**
-     * Calculates financial metrics (total hashrate, electricity cost, revenue).
+     * @function calculateMetrics()
      * @private
+     * @returns {void}
+     * Calculates financial metrics (total hashrate, electricity cost, revenue).
      */
     #calculateMetrics() {
         const monitoringSystem = this.getMonitoringSystem();
@@ -30,11 +32,12 @@ export class FinancialReport extends MonitoringReport {
     }
 
     /**
-     * Generates a financial report.
+     * @function generate()
      * @returns {string} - The financial report.
+     * Generates a financial report.
      */
     generate() {
-        return `📊 Financial Report:
+        return `Financial Report:
 - Total revenue: $${this.#revenue.toFixed(2)}
 - Total hashrate: ${this.#totalHashrate} TH/s
 - Electricity cost: $${this.#electricityCost.toFixed(2)}`;

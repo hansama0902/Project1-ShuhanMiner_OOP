@@ -6,7 +6,7 @@
  * How it was used: I used the generated code to design a test suite for class.
  */ 
 import { jest } from "@jest/globals";
-import Alert from "../MinerDesign_Code/Alert.js";
+import { Alert} from "../MinerDesign_Code/Alert.js";
 import { User } from "../MinerDesign_Code/User.js";
 
 describe("Alert Class Tests", () => {

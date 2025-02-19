@@ -36,8 +36,9 @@ export class Notification {
     }
 
     /**
-     * Retrieves notification details.
+     * @function getNotificationDetails
      * @returns {object} - Notification details.
+     * Retrieves notification details.
      */
     getNotificationDetails() {
         return {
@@ -49,32 +50,36 @@ export class Notification {
     }
 
     /**
-     * Retrieves the user who received the notification.
+     * @function getUser()
      * @returns {User|null} - The recipient user, or null if not assigned.
+     * Retrieves the user who received the notification.
      */
     getUser() {
         return this.#user;
     }
 
     /**
-     * Retrieves the notification ID.
+     * @function getId()
      * @returns {string} - The unique notification ID.
+     * Retrieves the notification ID.
      */
     getId() {
         return this.#id;
     }
 
     /**
-     * Retrieves the notification content.
+     * @function getContent()
      * @returns {string} - The notification message.
+     * Retrieves the notification content.
      */
     getContent() {
         return this.#content;
     }
 
     /**
-     * Retrieves the notification timestamp.
+     * @function getTimestamp()
      * @returns {Date} - The timestamp of the notification.
+     * Retrieves the notification timestamp.
      */
     getTimestamp() {
         return this.#timestamp;

@@ -6,7 +6,7 @@
  * - **Open-Closed Principle**: Allows extensions for specific mining models.
  * - **Liskov Substitution Principle**: Enables subclass interchangeability.
  */
-export default class MiningMachine {
+export class MiningMachine {
     #ipAddress;
     #hashRate;
     #temperature;
@@ -43,8 +43,9 @@ export default class MiningMachine {
     }
 
     /**
-     * Monitors and reports the machine's operational status.
+     * @function monitorStatus()
      * @returns {string} - The current status report.
+     * Monitors and reports the machine's operational status.
      */
     monitorStatus() {
         return `Machine ${this.#model} at ${this.#ipAddress} is currently ${this.#status}.
@@ -54,8 +55,9 @@ export default class MiningMachine {
     }
     
     /**
-     * Simulates a mining machine restart asynchronously.
+     * @function restart()
      * @returns {Promise<boolean>} - Resolves `true` if restart succeeds, `false` otherwise.
+     * Simulates a mining machine restart asynchronously.
      */
     async restart() {
         console.log(`Restarting machine ${this.#model} at IP ${this.#ipAddress}...`);
@@ -71,11 +73,13 @@ export default class MiningMachine {
     }
 
     /**
+     * @function checkTemperature()
+     * @returns {void} - No return value.
      * Checks for high temperature and triggers an alert if necessary.
      * Updates the high-temperature mode status.
      * If temperature exceeds threshold, adds an alert.
      * 
-     * @returns {void} - No return value.
+     * 
      */
     checkTemperature() {
         if (this.#temperature > MiningMachine.TEMPERATURE_THRESHOLD) {
@@ -92,10 +96,10 @@ export default class MiningMachine {
     }
     
     /**
-     * Adds an alert message to the alert list.
-     * 
+     * @function addAlert()
      * @param {string} message - The alert message.
      * @returns {void}
+     * Adds an alert message to the alert list.
      */
     addAlert(message) {
         this.#alerts.push(message);

@@ -17,8 +17,9 @@ export class PerformanceReport extends MonitoringReport {
     }
 
     /**
-     * Calculates performance metrics (average hashrate).
+     * @function calculateMetrics()
      * @private
+     * Calculates performance metrics (average hashrate).
      */
     #calculateMetrics() {
         const machines = this.getMonitoringSystem().getMachines();
@@ -28,8 +29,9 @@ export class PerformanceReport extends MonitoringReport {
     }
 
     /**
-     * Generates a performance report.
+     * @function generate()
      * @returns {string} - The performance report.
+     * Generates a performance report.
      */
     generate() {
         return `Performance Report:

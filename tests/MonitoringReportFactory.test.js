@@ -6,7 +6,7 @@
  * How it was used: I used the generated code to design a test suite.
  */ 
 import { jest } from "@jest/globals";
-import  MonitoringSystem from "../MinerDesign_Code/MonitoringSystem.js";
+import  { MonitoringSystem } from "../MinerDesign_Code/MonitoringSystem.js";
 import { MonitoringReportFactory } from "../MinerDesign_Code/MonitoringReportFactory.js";
 import { FinancialReport } from "../MinerDesign_Code/FinancialReport.js";
 import { PerformanceReport } from "../MinerDesign_Code/PerformanceReport.js";

@@ -1,4 +1,5 @@
 /**
+ * @module User
  * @class User
  * @description Represents a system user. Implements Observer to receive notifications.
  * 
@@ -25,9 +26,10 @@ export class User extends Observer {
     }
 
     /**
-     * Receives a notification.
+     * @function receiveNotification()
      * @param {object} notification - The received notification.
      * @throws {Error} If the notification is invalid.
+     * Receives a notification.
      */
     receiveNotification(notification) {
         if (!notification || typeof notification.content !== "string") {
@@ -38,24 +40,27 @@ export class User extends Observer {
     }
 
     /**
-     * Retrieves all notifications received by the user.
+     * @function getNotifications()
      * @returns {object[]} - List of notifications.
+     * Retrieves all notifications received by the user.
      */
     getNotifications() {
         return [...this.#notifications]; // 返回一个拷贝，防止外部修改
     }
 
     /**
-     * Retrieves the user ID.
+     * @function  getUserId()
      * @returns {string} - The user ID.
+     * Retrieves the user ID.
      */
     getUserId() {
         return this.#userId;
     }
 
     /**
-     * Retrieves the user role.
+     * @function getRole()
      * @returns {string} - The user role.
+     * Retrieves the user role.
      */
     getRole() {
         return this.#role;

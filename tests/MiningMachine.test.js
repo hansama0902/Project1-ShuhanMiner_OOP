@@ -6,7 +6,7 @@
  * How it was used: I used the generated code to design a test suite for the MiningMachine class.
  */ 
 import { jest } from "@jest/globals";
-import MiningMachine from "../MinerDesign_Code/MiningMachine.js";
+import { MiningMachine} from "../MinerDesign_Code/MiningMachine.js";
 
 describe("MiningMachine Class", () => {
     let miningMachine;

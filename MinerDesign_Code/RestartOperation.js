@@ -8,7 +8,7 @@
  * - Track restart time, duration, success count, and failure count.
  * - Provide detailed feedback on restart results.
  */
-export default class RestartOperation {
+export class RestartOperation {
     /**
      * @constructor
      * @param {MiningMachine[]} selectedMachines - List of mining machines to restart.
@@ -35,23 +35,22 @@ export default class RestartOperation {
     }
 
     /**
-     * Updates the list of mining machines selected for restart.
-     * 
+     * @function selectMachines()
      * @param {MiningMachine[]} machines - An array of mining machines to restart.
      * @returns {void}
+     * Updates the list of mining machines selected for restart.
      */
     selectMachines(machines) {
         this.#selectedMachines = machines;
     }
 
     /**
+     * @function executeRestart()
+     * @returns {Promise<void>}
      * Executes the restart operation for all selected machines asynchronously.
-     * 
      * - Records the start time of the operation.
      * - Measures the total time taken for the restart process.
      * - Tracks the number of successful and failed restarts.
-     * 
-     * @returns {Promise<void>}
      */
     async executeRestart() {
         console.log("Executing restart for selected machines...");
@@ -82,13 +81,13 @@ export default class RestartOperation {
     }
 
     /**
+     * @function provideFeedback()
+     * @returns {string} - A summary of the restart operation.
      * Provides detailed feedback on the restart operation.
      * 
      * - Includes restart timestamp.
      * - Reports the count of successful and failed restarts.
      * - Displays the duration of the restart process in seconds.
-     * 
-     * @returns {string} - A summary of the restart operation.
      */
     provideFeedback() {
         const timeString = this.#restartTime

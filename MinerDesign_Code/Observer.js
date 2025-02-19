@@ -26,6 +26,7 @@ export class Observer {
  * @throws {Error} If the method is not implemented.
  */
     receiveNotification(notification) {
+        console.log("Notification received:", notification);
         throw new Error("Method 'update' must be implemented.");
     }
 }

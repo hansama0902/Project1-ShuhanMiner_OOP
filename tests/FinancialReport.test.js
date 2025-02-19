@@ -7,7 +7,7 @@
  */ 
 
 import { jest } from "@jest/globals";
-import MonitoringSystem from "../MinerDesign_Code/MonitoringSystem.js";
+import { MonitoringSystem} from "../MinerDesign_Code/MonitoringSystem.js";
 import { FinancialReport } from "../MinerDesign_Code/FinancialReport.js";
 
 /**
@@ -47,7 +47,7 @@ describe("FinancialReport Tests", () => {
      */
     test("Should generate a correct financial report", () => {
         const report = financialReport.generate();
-        expect(report).toContain("📊 Financial Report:");
+        expect(report).toContain("Financial Report:");
         expect(report).toContain("Total revenue: $");
         expect(report).toContain("Total hashrate:");
         expect(report).toContain("Electricity cost:");

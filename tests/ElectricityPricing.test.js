@@ -6,7 +6,7 @@
  * How it was used: I used the generated code to design a test suite for class.
  */ 
 import { jest } from "@jest/globals";
-import ElectricityPricing from "../MinerDesign_Code/ElectricityPricing.js";
+import { ElectricityPricing} from "../MinerDesign_Code/ElectricityPricing.js";
 import { User } from "../MinerDesign_Code/User.js";
 
 // **使用 `jest.unstable_mockModule()` 来 Mock `Alert.js`**

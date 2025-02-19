@@ -6,7 +6,7 @@
  * How it was used: I used the generated code to design a test suite.
  */ 
 import { jest } from "@jest/globals";
-import RestartOperation from "../MinerDesign_Code/RestartOperation.js";
+import { RestartOperation } from "../MinerDesign_Code/RestartOperation.js";
 
 /**
  * 创建 `mock` 矿机对象

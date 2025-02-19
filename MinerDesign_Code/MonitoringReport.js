@@ -21,16 +21,18 @@ export class MonitoringReport {
     }
 
     /**
-     * Generates a report. Must be implemented by subclasses.
+     * @function generate()
      * @returns {string}
+     * Generates a report. Must be implemented by subclasses.
      */
     generate() {
         throw new Error("Generate method must be implemented by subclasses.");
     }
 
     /**
-    * Retrieves the monitoring system instance.
+    * @function getMonitoringSystem()
     * @returns {MonitoringSystem} - The monitoring system instance.
+    *  Retrieves the monitoring system instance.
     */
     getMonitoringSystem() {
         return this.#monitoringSystem;
