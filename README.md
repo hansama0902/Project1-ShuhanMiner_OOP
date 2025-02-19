@@ -79,6 +79,16 @@ npm test
 - Mock modules simulate mining machine behavior for reliability.
 
 ---
+## **Resourse**
+[Video](https://youtu.be/R1kZ3-wLV_E)  
+[UML](https://lucid.app/lucidchart/c2aea4c8-6297-4041-a0c9-86d3542032d7/edit?viewport_loc=-1724%2C-881%2C4911%2C2993%2C0_0&invitationId=inv_2ccd1b6b-e5bf-4e7c-9735-a7919fcdd857)  
+[Figma](https://www.figma.com/design/LzSmddUo5EEPUXzetZANBV/ShuhanMiner?node-id=0-1&m=dev&t=JuRjF2fUYOPkUmnD-1)  
+[OOP_design patterns&hypothetical example](https://github.com/hansama0902/Project1-ShuhanMiner_OOP/tree/main/OOP_design%20patterns%26hypothetical%20example)  
+[Business Requirements](https://github.com/hansama0902/Project1-ShuhanMiner_OOP/blob/main/Business%20Requirements/ShuhanMiner%20Business%20Requirements%20Document.pdf)
+
+
+
+---
 ## **AI Usage**
 This project has integrated AI assistance in the following ways:
 1. **Test File Design:** ChatGPT 4o was used to help design structured and efficient test cases.
