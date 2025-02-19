@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: RestartOperation.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: RestartOperation.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @class RestartOperation
+ * @description Manages batch restart operations for mining machines.
+ * 
+ * This class provides functionality to:
+ * - Select machines for restart.
+ * - Execute batch restart operations asynchronously.
+ * - Track restart time, duration, success count, and failure count.
+ * - Provide detailed feedback on restart results.
+ */
+export class RestartOperation {
+    /**
+     * @constructor
+     * @param {MiningMachine[]} selectedMachines - List of mining machines to restart.
+     * 
+     * @property {MiningMachine[]} #selectedMachines - The list of selected machines for restart.
+     * @property {string} #restartStatus - The current restart operation status (`"Pending"`, `"Completed"`).
+     * @property {Date|null} #restartTime - The timestamp when the restart operation begins.
+     * @property {number} #restartDuration - The time taken for the restart operation (in milliseconds).
+     * @property {number} #successfulRestarts - Number of machines successfully restarted.
+     * @property {number} #failedRestarts - Number of machines that failed to restart.
+     */
+    #selectedMachines;
+    #restartTime;
+    #restartDuration;
+    #successfulRestarts;
+    #failedRestarts;
+
+    constructor(selectedMachines = []) {
+        this.#selectedMachines = selectedMachines;
+        this.#restartTime = null;
+        this.#restartDuration = 0;
+        this.#successfulRestarts = 0;
+        this.#failedRestarts = 0;
+    }
+
+    /**
+     * @function selectMachines()
+     * @param {MiningMachine[]} machines - An array of mining machines to restart.
+     * @returns {void}
+     * Updates the list of mining machines selected for restart.
+     */
+    selectMachines(machines) {
+        this.#selectedMachines = machines;
+    }
+
+    /**
+     * @function executeRestart()
+     * @returns {Promise&lt;void>}
+     * Executes the restart operation for all selected machines asynchronously.
+     * - Records the start time of the operation.
+     * - Measures the total time taken for the restart process.
+     * - Tracks the number of successful and failed restarts.
+     */
+    async executeRestart() {
+        console.log("Executing restart for selected machines...");
+        this.#restartTime = new Date(); // Capture the start time of the restart operation
+        const startTime = performance.now(); // Start high-precision timer
+
+        let successCount = 0;
+        let failureCount = 0;
+
+        // Execute all restarts asynchronously
+        await Promise.all(
+            this.#selectedMachines.map(async (machine) => {
+                try {
+                    const result = await machine.restart(); // Assume `restart()` returns a Promise&lt;boolean>
+                    result ? successCount++ : failureCount++;
+                } catch (error) {
+                    console.error(`Error restarting ${machine.name}:`, error);
+                    failureCount++;
+                }
+            })
+        );
+
+        const endTime = performance.now();
+        this.#restartDuration = endTime - startTime; // Compute total duration in milliseconds
+
+        this.#successfulRestarts = successCount;
+        this.#failedRestarts = failureCount;
+    }
+
+    /**
+     * @function provideFeedback()
+     * @returns {string} - A summary of the restart operation.
+     * Provides detailed feedback on the restart operation.
+     * 
+     * - Includes restart timestamp.
+     * - Reports the count of successful and failed restarts.
+     * - Displays the duration of the restart process in seconds.
+     */
+    provideFeedback() {
+        const timeString = this.#restartTime
+            ? RestartOperation.formatDate(this.#restartTime)
+            : "N/A";
+
+        return `Restart completed at ${timeString}. 
+                Successful: ${this.#successfulRestarts}, 
+                Failed: ${this.#failedRestarts}, 
+                Duration: ${(this.#restartDuration / 1000).toFixed(2)} seconds.`;
+    }
+
+    /**
+     * Formats a date into a human-readable string.
+     * 
+     * @param {Date} date - The date object to format.
+     * @returns {string} - Formatted date string.
+     */
+    static formatDate(date) {
+        return date.toLocaleString("en-US", { timeZone: "UTC" });
+    }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Alert.html">Alert</a></li><li><a href="Alert_Alert.html">Alert</a></li><li><a href="ElectricityPricing.html">ElectricityPricing</a></li><li><a href="ElectricityPricing_ElectricityPricing.html">ElectricityPricing</a></li><li><a href="FinancialReport.html">FinancialReport</a></li><li><a href="FinancialReport_FinancialReport.html">FinancialReport</a></li><li><a href="FinancialReport_MonitoringReport.html">MonitoringReport</a></li><li><a href="MiningMachine.html">MiningMachine</a></li><li><a href="MiningMachine_MiningMachine.html">MiningMachine</a></li><li><a href="MonitoringReport.html">MonitoringReport</a></li><li><a href="MonitoringReport_MonitoringReport.html">MonitoringReport</a></li><li><a href="MonitoringReportFactory.html">MonitoringReportFactory</a></li><li><a href="MonitoringSystem.html">MonitoringSystem</a></li><li><a href="MonitoringSystem_MonitoringSystem.html">MonitoringSystem</a></li><li><a href="Notification.html">Notification</a></li><li><a href="Notification_Notification.html">Notification</a></li><li><a href="PerformanceReport.html">PerformanceReport</a></li><li><a href="PerformanceReport_PerformanceReport.html">PerformanceReport</a></li><li><a href="RestartOperation.html">RestartOperation</a></li><li><a href="User.html">User</a></li><li><a href="User_User.html">User</a></li></ul><h3>Interfaces</h3><ul><li><a href="Observer.html">Observer</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addAlert()">addAlert()</a></li><li><a href="global.html#addMachine()">addMachine()</a></li><li><a href="global.html#checkTemperature()">checkTemperature()</a></li><li><a href="global.html#clearMachines()">clearMachines()</a></li><li><a href="global.html#displayPrice()">displayPrice()</a></li><li><a href="global.html#executeRestart()">executeRestart()</a></li><li><a href="global.html#faultDiagnosis()">faultDiagnosis()</a></li><li><a href="global.html#firmwareUpdate()">firmwareUpdate()</a></li><li><a href="global.html#generate()">generate()</a></li><li><a href="global.html#generateReport()">generateReport()</a></li><li><a href="global.html#getContent()">getContent()</a></li><li><a href="global.html#getId()">getId()</a></li><li><a href="global.html#getMachines()">getMachines()</a></li><li><a href="global.html#getMiningMachines()">getMiningMachines()</a></li><li><a href="global.html#getMonitoringSystem()">getMonitoringSystem()</a></li><li><a href="global.html#getNotificationDetails">getNotificationDetails</a></li><li><a href="global.html#getNotifications()">getNotifications()</a></li><li><a href="global.html#getOverheatedMachines()">getOverheatedMachines()</a></li><li><a href="global.html#getPriceHistory()">getPriceHistory()</a></li><li><a href="global.html#getRole()">getRole()</a></li><li><a href="global.html#getTimestamp()">getTimestamp()</a></li><li><a href="global.html#getUser()">getUser()</a></li><li><a href="global.html#getUserId()">getUserId()</a></li><li><a href="global.html#monitorFluctuations()">monitorFluctuations()</a></li><li><a href="global.html#monitorStatus()">monitorStatus()</a></li><li><a href="global.html#monitorTemperature()">monitorTemperature()</a></li><li><a href="global.html#notifyUsers()">notifyUsers()</a></li><li><a href="global.html#provideFeedback()">provideFeedback()</a></li><li><a href="global.html#receiveNotification()">receiveNotification()</a></li><li><a href="global.html#restart()">restart()</a></li><li><a href="global.html#retrieveDetails()">retrieveDetails()</a></li><li><a href="global.html#selectMachines()">selectMachines()</a></li><li><a href="global.html#trigger()">trigger()</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed Feb 19 2025 10:03:53 GMT-0800 (Pacific Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

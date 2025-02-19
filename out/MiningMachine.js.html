@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: MiningMachine.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: MiningMachine.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @class MiningMachine
+ * @description Represents a mining machine with monitoring and restart capabilities.
+ * 
+ * Adheres to:
+ * - **Open-Closed Principle**: Allows extensions for specific mining models.
+ * - **Liskov Substitution Principle**: Enables subclass interchangeability.
+ */
+export class MiningMachine {
+    #ipAddress;
+    #hashRate;
+    #temperature;
+    #model;
+    #status;
+    #highTemperatureMode;
+    #alerts; // List of alert messages
+
+    /**
+     * Defines the high-temperature threshold for alerts.
+     * Can be overridden by subclasses.
+     * @constant {number}
+     */
+    static TEMPERATURE_THRESHOLD = 80;
+
+    /**
+     * Constructs a new MiningMachine instance.
+     * 
+     * @param {string} ipAddress - The IP address of the mining machine.
+     * @param {number} hashRate - The hashrate in TH/s.
+     * @param {number} temperature - The current temperature in °C.
+     * @param {string} model - The model identifier of the mining machine.
+     * @param {string} status - The operational status.
+     * @param {boolean} highTemperatureMode - Indicates if high-temperature protection is active.
+     */
+    constructor(ipAddress, hashRate, temperature, model, status, highTemperatureMode) {
+        this.#ipAddress = ipAddress;
+        this.#hashRate = hashRate;
+        this.#temperature = temperature;
+        this.#model = model;
+        this.#status = status;
+        this.#highTemperatureMode = highTemperatureMode;
+        this.#alerts = []; // Store alert messages
+    }
+
+    /**
+     * @function monitorStatus()
+     * @returns {string} - The current status report.
+     * Monitors and reports the machine's operational status.
+     */
+    monitorStatus() {
+        return `Machine ${this.#model} at ${this.#ipAddress} is currently ${this.#status}.
+                Hashrate: ${this.#hashRate} TH/s. 
+                Temperature: ${this.#temperature}°C.
+                Alerts: ${this.#alerts.length > 0 ? this.#alerts.join(", ") : "No alerts"}`;
+    }
+    
+    /**
+     * @function restart()
+     * @returns {Promise&lt;boolean>} - Resolves `true` if restart succeeds, `false` otherwise.
+     * Simulates a mining machine restart asynchronously.
+     */
+    async restart() {
+        console.log(`Restarting machine ${this.#model} at IP ${this.#ipAddress}...`);
+        this.#status = "Restarting";
+
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const success = Math.random() > 0.1; // 90% success rate
+                this.#status = success ? "Operational" : "Failed";
+                resolve(success);
+            }, 2000); // Simulated restart delay
+        });
+    }
+
+    /**
+     * @function checkTemperature()
+     * @returns {void} - No return value.
+     * Checks for high temperature and triggers an alert if necessary.
+     * Updates the high-temperature mode status.
+     * If temperature exceeds threshold, adds an alert.
+     * 
+     * 
+     */
+    checkTemperature() {
+        if (this.#temperature > MiningMachine.TEMPERATURE_THRESHOLD) {
+            if (!this.#highTemperatureMode) {
+                this.#highTemperatureMode = true;
+                const alertMessage = `High temperature alert! Machine ${this.#model} at ${this.#ipAddress} is at ${this.#temperature}°C.`;
+                
+                console.log(alertMessage);
+                this.addAlert(alertMessage);
+            }
+        } else {
+            this.#highTemperatureMode = false; // Reset if temperature returns to normal
+        }
+    }
+    
+    /**
+     * @function addAlert()
+     * @param {string} message - The alert message.
+     * @returns {void}
+     * Adds an alert message to the alert list.
+     */
+    addAlert(message) {
+        this.#alerts.push(message);
+    }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Alert.html">Alert</a></li><li><a href="Alert_Alert.html">Alert</a></li><li><a href="ElectricityPricing.html">ElectricityPricing</a></li><li><a href="ElectricityPricing_ElectricityPricing.html">ElectricityPricing</a></li><li><a href="FinancialReport.html">FinancialReport</a></li><li><a href="FinancialReport_FinancialReport.html">FinancialReport</a></li><li><a href="FinancialReport_MonitoringReport.html">MonitoringReport</a></li><li><a href="MiningMachine.html">MiningMachine</a></li><li><a href="MiningMachine_MiningMachine.html">MiningMachine</a></li><li><a href="MonitoringReport.html">MonitoringReport</a></li><li><a href="MonitoringReport_MonitoringReport.html">MonitoringReport</a></li><li><a href="MonitoringReportFactory.html">MonitoringReportFactory</a></li><li><a href="MonitoringSystem.html">MonitoringSystem</a></li><li><a href="MonitoringSystem_MonitoringSystem.html">MonitoringSystem</a></li><li><a href="Notification.html">Notification</a></li><li><a href="Notification_Notification.html">Notification</a></li><li><a href="PerformanceReport.html">PerformanceReport</a></li><li><a href="PerformanceReport_PerformanceReport.html">PerformanceReport</a></li><li><a href="RestartOperation.html">RestartOperation</a></li><li><a href="User.html">User</a></li><li><a href="User_User.html">User</a></li></ul><h3>Interfaces</h3><ul><li><a href="Observer.html">Observer</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addAlert()">addAlert()</a></li><li><a href="global.html#addMachine()">addMachine()</a></li><li><a href="global.html#checkTemperature()">checkTemperature()</a></li><li><a href="global.html#clearMachines()">clearMachines()</a></li><li><a href="global.html#displayPrice()">displayPrice()</a></li><li><a href="global.html#executeRestart()">executeRestart()</a></li><li><a href="global.html#faultDiagnosis()">faultDiagnosis()</a></li><li><a href="global.html#firmwareUpdate()">firmwareUpdate()</a></li><li><a href="global.html#generate()">generate()</a></li><li><a href="global.html#generateReport()">generateReport()</a></li><li><a href="global.html#getContent()">getContent()</a></li><li><a href="global.html#getId()">getId()</a></li><li><a href="global.html#getMachines()">getMachines()</a></li><li><a href="global.html#getMiningMachines()">getMiningMachines()</a></li><li><a href="global.html#getMonitoringSystem()">getMonitoringSystem()</a></li><li><a href="global.html#getNotificationDetails">getNotificationDetails</a></li><li><a href="global.html#getNotifications()">getNotifications()</a></li><li><a href="global.html#getOverheatedMachines()">getOverheatedMachines()</a></li><li><a href="global.html#getPriceHistory()">getPriceHistory()</a></li><li><a href="global.html#getRole()">getRole()</a></li><li><a href="global.html#getTimestamp()">getTimestamp()</a></li><li><a href="global.html#getUser()">getUser()</a></li><li><a href="global.html#getUserId()">getUserId()</a></li><li><a href="global.html#monitorFluctuations()">monitorFluctuations()</a></li><li><a href="global.html#monitorStatus()">monitorStatus()</a></li><li><a href="global.html#monitorTemperature()">monitorTemperature()</a></li><li><a href="global.html#notifyUsers()">notifyUsers()</a></li><li><a href="global.html#provideFeedback()">provideFeedback()</a></li><li><a href="global.html#receiveNotification()">receiveNotification()</a></li><li><a href="global.html#restart()">restart()</a></li><li><a href="global.html#retrieveDetails()">retrieveDetails()</a></li><li><a href="global.html#selectMachines()">selectMachines()</a></li><li><a href="global.html#trigger()">trigger()</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed Feb 19 2025 10:03:53 GMT-0800 (Pacific Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
