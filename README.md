@@ -80,8 +80,9 @@ npm test
 
 ---
 ## **Resourse**
-[Video](https://youtu.be/R1kZ3-wLV_E)
-[UML] (https://lucid.app/lucidchart/c2aea4c8-6297-4041-a0c9-86d3542032d7/edit?viewport_loc=-1724%2C-881%2C4911%2C2993%2C0_0&invitationId=inv_2ccd1b6b-e5bf-4e7c-9735-a7919fcdd857)
+[Video](https://youtu.be/R1kZ3-wLV_E)  
+
+[UML](https://lucid.app/lucidchart/c2aea4c8-6297-4041-a0c9-86d3542032d7/edit?viewport_loc=-1724%2C-881%2C4911%2C2993%2C0_0&invitationId=inv_2ccd1b6b-e5bf-4e7c-9735-a7919fcdd857)
 
 
 ---
