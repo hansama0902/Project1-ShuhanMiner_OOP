@@ -24,7 +24,7 @@ monitoringSystem.monitorTemperature();
 
 //  (Initialize Electricity Pricing Monitoring)**
 const electricityPricing = new ElectricityPricing(0.12, 0.15);
-electricityPricing.monitorFluctuations(0.16, []); // 触发警报 (Trigger Alert)
+electricityPricing.monitorFluctuations(0.16, []); 
 
 //  (Generate Financial Report)**
 const financialReport = new FinancialReport(monitoringSystem);

@@ -46,14 +46,14 @@ describe("FinancialReport Tests", () => {
     });
 
     test("Should correctly calculate total hashrate", () => {
-        const expectedHashrate = 100 + 120 + 150; // 计算所有矿机的总算力
+        const expectedHashrate = 100 + 120 + 150; 
         const report = financialReport.generate();
         expect(report).toContain(`Total hashrate: ${expectedHashrate} TH/s`);
     });
 
   
     test("Should correctly calculate electricity cost", () => {
-        const expectedCost = 3 * 0.1; // 3 台矿机，每台 0.1 美元电费
+        const expectedCost = 3 * 0.1; 
         const report = financialReport.generate();
         expect(report).toContain(`Electricity cost: $${expectedCost.toFixed(2)}`);
     });

@@ -32,7 +32,7 @@ describe("MiningMachine Class", () => {
 
 
     test("should restart successfully", async () => {
-        jest.spyOn(global.Math, "random").mockReturnValue(0.9); // 90% 成功率
+        jest.spyOn(global.Math, "random").mockReturnValue(0.9); 
         await expect(miningMachine.restart()).resolves.toBe(true);
         expect(miningMachine.monitorStatus()).toContain("Operational");
 
@@ -40,7 +40,7 @@ describe("MiningMachine Class", () => {
     });
 
     test("should fail restart", async () => {
-        jest.spyOn(global.Math, "random").mockReturnValue(0.05); // 10% 失败率
+        jest.spyOn(global.Math, "random").mockReturnValue(0.05);
         await expect(miningMachine.restart()).resolves.toBe(false);
         expect(miningMachine.monitorStatus()).toContain("Failed");
 

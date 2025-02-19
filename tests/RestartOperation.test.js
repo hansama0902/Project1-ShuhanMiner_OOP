@@ -11,7 +11,7 @@ import { RestartOperation } from "../MinerDesign_Code/RestartOperation.js";
 
 const createMockMachine = (name, shouldSucceed = true) => ({
     name,
-    restart: jest.fn(() => Promise.resolve(shouldSucceed)) // 模拟 `restart()` 方法
+    restart: jest.fn(() => Promise.resolve(shouldSucceed)) 
 });
 
 describe("RestartOperation Tests", () => {
@@ -23,7 +23,7 @@ describe("RestartOperation Tests", () => {
         mockMachines = [
             createMockMachine("Machine 1", true),
             createMockMachine("Machine 2", true),
-            createMockMachine("Machine 3", false) // 失败的矿机
+            createMockMachine("Machine 3", false) 
         ];
 
         restartOperation = new RestartOperation(mockMachines);
@@ -66,15 +66,15 @@ describe("RestartOperation Tests", () => {
         await restartOperation.executeRestart();
         const feedback = restartOperation.provideFeedback();
 
-        expect(feedback).toContain("Restart completed at"); // 确保有时间戳
+        expect(feedback).toContain("Restart completed at"); 
         expect(feedback).toContain("Successful: 2");
         expect(feedback).toContain("Failed: 1");
-        expect(feedback).toMatch(/Duration: \d+\.\d{2} seconds/); // 检查格式是否正确
+        expect(feedback).toMatch(/Duration: \d+\.\d{2} seconds/); 
     });
 
   
     test("Should format date correctly", () => {
         const testDate = new Date("2025-02-18T12:34:56Z");
-        expect(RestartOperation.formatDate(testDate)).toContain("2/18/2025"); // 确保时间格式正确
+        expect(RestartOperation.formatDate(testDate)).toContain("2/18/2025"); 
     });
 });

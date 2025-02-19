@@ -48,13 +48,13 @@ describe("PerformanceReport Tests", () => {
 
     
     test("Should correctly calculate average hashrate", () => {
-        const expectedAverageHashrate = ((90 + 110 + 130) / 3).toFixed(2); // 计算平均值
+        const expectedAverageHashrate = ((90 + 110 + 130) / 3).toFixed(2); 
         const report = performanceReport.generate();
         expect(report).toContain(`Average hashrate: ${expectedAverageHashrate} TH/s`);
     });
 
     test("Should return 0 when there are no machines", () => {
-        monitoringSystem.clearMachines(); // 清空所有矿机
+        monitoringSystem.clearMachines(); 
         performanceReport = new PerformanceReport(monitoringSystem);
         const report = performanceReport.generate();
         expect(report).toContain("Average hashrate: 0 TH/s");
