@@ -50,7 +50,7 @@ export class Notification {
     }
 
     /**
-     * @function getUser()
+     * @function getUser
      * @returns {User|null} - The recipient user, or null if not assigned.
      * Retrieves the user who received the notification.
      */
@@ -59,7 +59,7 @@ export class Notification {
     }
 
     /**
-     * @function getId()
+     * @function getId
      * @returns {string} - The unique notification ID.
      * Retrieves the notification ID.
      */
@@ -68,7 +68,7 @@ export class Notification {
     }
 
     /**
-     * @function getContent()
+     * @function getContent
      * @returns {string} - The notification message.
      * Retrieves the notification content.
      */
@@ -77,7 +77,7 @@ export class Notification {
     }
 
     /**
-     * @function getTimestamp()
+     * @function getTimestamp
      * @returns {Date} - The timestamp of the notification.
      * Retrieves the notification timestamp.
      */

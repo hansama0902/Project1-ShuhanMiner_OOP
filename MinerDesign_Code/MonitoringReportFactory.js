@@ -9,7 +9,7 @@ export class MonitoringReportFactory {
     static factoryName = "Mining Report Factory"; // Custom factory property
 
     /**
-     * @function generateReport()
+     * @function generateReport
      * @param {string} type - The type of report ("financial", "performance", "maintenance").
      * @param {MonitoringSystem} monitoringSystem - The monitoring system instance.
      * @returns {MonitoringReport} - A new report instance.

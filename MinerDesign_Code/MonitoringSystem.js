@@ -29,7 +29,7 @@ export class MonitoringSystem {
         return MonitoringSystem.#instance;
     }
     /**
-     * @function  getMiningMachines()
+     * @function  getMiningMachines
      * @returns {Array} - List of all mining machines.
      * Retrieves all monitored mining machines.
      */
@@ -37,7 +37,7 @@ export class MonitoringSystem {
         return this.#miningMachines;
     }
     /**
-     * @function getOverheatedMachines()
+     * @function getOverheatedMachines
      * @returns {Array} - List of overheated mining machines.
      * Retrieves all overheated mining machines.
      */
@@ -46,7 +46,7 @@ export class MonitoringSystem {
     }
 
     /**
-     * @function addMachine()
+     * @function addMachine
      * @param {Object} machine - The mining machine to be monitored.
      * @returns {void}
      * Adds a mining machine to monitoring.
@@ -61,7 +61,7 @@ export class MonitoringSystem {
     }
 
     /**
-     * @function monitorTemperature()
+     * @function monitorTemperature
      * @returns {void}
      * Monitors temperature and updates overheated machines.
      */
@@ -73,7 +73,7 @@ export class MonitoringSystem {
     }
 
    /**
-     * @function faultDiagnosis()
+     * @function faultDiagnosis
      * @returns {void}
      * Diagnoses machine faults and sets the fault type.
      */
@@ -88,7 +88,7 @@ export class MonitoringSystem {
     }
 
    /**
-     * @function firmwareUpdate()
+     * @function firmwareUpdate
      * @param {string} newVersion - The new firmware version.
      * @returns {void}
      * Updates the firmware for all mining machines.
@@ -105,14 +105,14 @@ export class MonitoringSystem {
         console.log(`Updating firmware to version ${newVersion}...`);
     }
     /**
-     * @function  getMachines()
+     * @function  getMachines
      * @returns {Array} - List of all mining machines.
      */
     getMachines() {
         return this.#miningMachines;
     }
     /**
-     * @function clearMachines()
+     * @function clearMachines
      *  
      */
     clearMachines() {

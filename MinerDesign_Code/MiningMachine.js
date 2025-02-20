@@ -48,7 +48,7 @@ export class MiningMachine {
     }
 
     /**
-     * @function monitorStatus()
+     * @function monitorStatus
      * @returns {string} - The current status report.
      * Monitors and reports the machine's operational status.
      */
@@ -60,7 +60,7 @@ export class MiningMachine {
     }
     
     /**
-     * @function restart()
+     * @function restart
      * @returns {Promise<boolean>} - Resolves `true` if restart succeeds, `false` otherwise.
      * Simulates a mining machine restart asynchronously.
      */
@@ -78,7 +78,7 @@ export class MiningMachine {
     }
 
     /**
-     * @function checkTemperature()
+     * @function checkTemperature
      * @returns {void} - No return value.
      * Checks for high temperature and triggers an alert if necessary.
      * Updates the high-temperature mode status.
@@ -101,7 +101,7 @@ export class MiningMachine {
     }
     
     /**
-     * @function addAlert()
+     * @function addAlert
      * @param {string} message - The alert message.
      * @returns {void}
      * Adds an alert message to the alert list.

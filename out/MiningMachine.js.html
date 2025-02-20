@@ -33,6 +33,11 @@
  * Adheres to:
  * - **Open-Closed Principle**: Allows extensions for specific mining models.
  * - **Liskov Substitution Principle**: Enables subclass interchangeability.
+ * 
+* AI Usage:
+ * Model: ChatGPT 4o
+ * Prompts: Can you give me an example of a JSDoc document? I want to use it to document my code.
+ * How it was used:I used the generated code to create a JSDoc document.
  */
 export class MiningMachine {
     #ipAddress;
@@ -62,7 +67,7 @@ export class MiningMachine {
      */
     constructor(ipAddress, hashRate, temperature, model, status, highTemperatureMode) {
         this.#ipAddress = ipAddress;
-        this.#hashRate = hashRate;
+        this.#hashRate = Number(hashRate) || 0;;
         this.#temperature = temperature;
         this.#model = model;
         this.#status = status;
@@ -71,7 +76,7 @@ export class MiningMachine {
     }
 
     /**
-     * @function monitorStatus()
+     * @function monitorStatus
      * @returns {string} - The current status report.
      * Monitors and reports the machine's operational status.
      */
@@ -83,7 +88,7 @@ export class MiningMachine {
     }
     
     /**
-     * @function restart()
+     * @function restart
      * @returns {Promise&lt;boolean>} - Resolves `true` if restart succeeds, `false` otherwise.
      * Simulates a mining machine restart asynchronously.
      */
@@ -101,7 +106,7 @@ export class MiningMachine {
     }
 
     /**
-     * @function checkTemperature()
+     * @function checkTemperature
      * @returns {void} - No return value.
      * Checks for high temperature and triggers an alert if necessary.
      * Updates the high-temperature mode status.
@@ -124,13 +129,36 @@ export class MiningMachine {
     }
     
     /**
-     * @function addAlert()
+     * @function addAlert
      * @param {string} message - The alert message.
      * @returns {void}
      * Adds an alert message to the alert list.
      */
     addAlert(message) {
         this.#alerts.push(message);
+    }
+    get ipAddress() {
+        return this.#ipAddress;
+    }
+
+    get hashRate() {
+        return this.#hashRate;
+    }
+
+    get temperature() {
+        return this.#temperature;
+    }
+
+    get model() {
+        return this.#model;
+    }
+
+    get status() {
+        return this.#status;
+    }
+
+    get highTemperatureMode() {
+        return this.#highTemperatureMode;
     }
 }
 </code></pre>
@@ -143,13 +171,13 @@ export class MiningMachine {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Alert.html">Alert</a></li><li><a href="Alert_Alert.html">Alert</a></li><li><a href="ElectricityPricing.html">ElectricityPricing</a></li><li><a href="ElectricityPricing_ElectricityPricing.html">ElectricityPricing</a></li><li><a href="FinancialReport.html">FinancialReport</a></li><li><a href="FinancialReport_FinancialReport.html">FinancialReport</a></li><li><a href="FinancialReport_MonitoringReport.html">MonitoringReport</a></li><li><a href="MiningMachine.html">MiningMachine</a></li><li><a href="MiningMachine_MiningMachine.html">MiningMachine</a></li><li><a href="MonitoringReport.html">MonitoringReport</a></li><li><a href="MonitoringReport_MonitoringReport.html">MonitoringReport</a></li><li><a href="MonitoringReportFactory.html">MonitoringReportFactory</a></li><li><a href="MonitoringSystem.html">MonitoringSystem</a></li><li><a href="MonitoringSystem_MonitoringSystem.html">MonitoringSystem</a></li><li><a href="Notification.html">Notification</a></li><li><a href="Notification_Notification.html">Notification</a></li><li><a href="PerformanceReport.html">PerformanceReport</a></li><li><a href="PerformanceReport_PerformanceReport.html">PerformanceReport</a></li><li><a href="RestartOperation.html">RestartOperation</a></li><li><a href="User.html">User</a></li><li><a href="User_User.html">User</a></li></ul><h3>Interfaces</h3><ul><li><a href="Observer.html">Observer</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addAlert()">addAlert()</a></li><li><a href="global.html#addMachine()">addMachine()</a></li><li><a href="global.html#checkTemperature()">checkTemperature()</a></li><li><a href="global.html#clearMachines()">clearMachines()</a></li><li><a href="global.html#displayPrice()">displayPrice()</a></li><li><a href="global.html#executeRestart()">executeRestart()</a></li><li><a href="global.html#faultDiagnosis()">faultDiagnosis()</a></li><li><a href="global.html#firmwareUpdate()">firmwareUpdate()</a></li><li><a href="global.html#generate()">generate()</a></li><li><a href="global.html#generateReport()">generateReport()</a></li><li><a href="global.html#getContent()">getContent()</a></li><li><a href="global.html#getId()">getId()</a></li><li><a href="global.html#getMachines()">getMachines()</a></li><li><a href="global.html#getMiningMachines()">getMiningMachines()</a></li><li><a href="global.html#getMonitoringSystem()">getMonitoringSystem()</a></li><li><a href="global.html#getNotificationDetails">getNotificationDetails</a></li><li><a href="global.html#getNotifications()">getNotifications()</a></li><li><a href="global.html#getOverheatedMachines()">getOverheatedMachines()</a></li><li><a href="global.html#getPriceHistory()">getPriceHistory()</a></li><li><a href="global.html#getRole()">getRole()</a></li><li><a href="global.html#getTimestamp()">getTimestamp()</a></li><li><a href="global.html#getUser()">getUser()</a></li><li><a href="global.html#getUserId()">getUserId()</a></li><li><a href="global.html#monitorFluctuations()">monitorFluctuations()</a></li><li><a href="global.html#monitorStatus()">monitorStatus()</a></li><li><a href="global.html#monitorTemperature()">monitorTemperature()</a></li><li><a href="global.html#notifyUsers()">notifyUsers()</a></li><li><a href="global.html#provideFeedback()">provideFeedback()</a></li><li><a href="global.html#receiveNotification()">receiveNotification()</a></li><li><a href="global.html#restart()">restart()</a></li><li><a href="global.html#retrieveDetails()">retrieveDetails()</a></li><li><a href="global.html#selectMachines()">selectMachines()</a></li><li><a href="global.html#trigger()">trigger()</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Alert.html">Alert</a></li><li><a href="Alert_Alert.html">Alert</a></li><li><a href="ElectricityPricing.html">ElectricityPricing</a></li><li><a href="ElectricityPricing_ElectricityPricing.html">ElectricityPricing</a></li><li><a href="FinancialReport.html">FinancialReport</a></li><li><a href="FinancialReport_FinancialReport.html">FinancialReport</a></li><li><a href="FinancialReport_MonitoringReport.html">MonitoringReport</a></li><li><a href="MiningMachine.html">MiningMachine</a></li><li><a href="MiningMachine_MiningMachine.html">MiningMachine</a></li><li><a href="MonitoringReport.html">MonitoringReport</a></li><li><a href="MonitoringReport_MonitoringReport.html">MonitoringReport</a></li><li><a href="MonitoringReportFactory.html">MonitoringReportFactory</a></li><li><a href="MonitoringSystem.html">MonitoringSystem</a></li><li><a href="MonitoringSystem_MonitoringSystem.html">MonitoringSystem</a></li><li><a href="Notification.html">Notification</a></li><li><a href="Notification_Notification.html">Notification</a></li><li><a href="PerformanceReport.html">PerformanceReport</a></li><li><a href="PerformanceReport_PerformanceReport.html">PerformanceReport</a></li><li><a href="RestartOperation.html">RestartOperation</a></li><li><a href="User.html">User</a></li><li><a href="User_User.html">User</a></li></ul><h3>Interfaces</h3><ul><li><a href="Observer.html">Observer</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addAlert">addAlert</a></li><li><a href="global.html#addMachine">addMachine</a></li><li><a href="global.html#checkTemperature">checkTemperature</a></li><li><a href="global.html#clearMachines">clearMachines</a></li><li><a href="global.html#displayPrice">displayPrice</a></li><li><a href="global.html#executeRestart">executeRestart</a></li><li><a href="global.html#faultDiagnosis">faultDiagnosis</a></li><li><a href="global.html#firmwareUpdate">firmwareUpdate</a></li><li><a href="global.html#generate">generate</a></li><li><a href="global.html#generateReport">generateReport</a></li><li><a href="global.html#getContent">getContent</a></li><li><a href="global.html#getId">getId</a></li><li><a href="global.html#getMachines">getMachines</a></li><li><a href="global.html#getMiningMachines">getMiningMachines</a></li><li><a href="global.html#getMonitoringSystem">getMonitoringSystem</a></li><li><a href="global.html#getNotificationDetails">getNotificationDetails</a></li><li><a href="global.html#getNotifications">getNotifications</a></li><li><a href="global.html#getOverheatedMachines">getOverheatedMachines</a></li><li><a href="global.html#getPriceHistory">getPriceHistory</a></li><li><a href="global.html#getRole">getRole</a></li><li><a href="global.html#getTimestamp">getTimestamp</a></li><li><a href="global.html#getUser">getUser</a></li><li><a href="global.html#getUserId">getUserId</a></li><li><a href="global.html#monitorFluctuations">monitorFluctuations</a></li><li><a href="global.html#monitorStatus">monitorStatus</a></li><li><a href="global.html#monitorTemperature">monitorTemperature</a></li><li><a href="global.html#notifyUsers">notifyUsers</a></li><li><a href="global.html#provideFeedback">provideFeedback</a></li><li><a href="global.html#receiveNotification">receiveNotification</a></li><li><a href="global.html#restart">restart</a></li><li><a href="global.html#retrieveDetails">retrieveDetails</a></li><li><a href="global.html#selectMachines">selectMachines</a></li><li><a href="global.html#trigger">trigger</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed Feb 19 2025 10:03:53 GMT-0800 (Pacific Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed Feb 19 2025 20:49:31 GMT-0800 (Pacific Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

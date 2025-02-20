@@ -11,7 +11,7 @@ export class MonitoringReport {
 
     /**
      * @constructor
-     * @param {MonitoringSystem}} monitoringSystem - The monitoring system instance.
+     * @param {MonitoringSystem} monitoringSystem - The monitoring system instance.
      */
     constructor(monitoringSystem) {
         if (new.target === MonitoringReport) {
@@ -21,7 +21,7 @@ export class MonitoringReport {
     }
 
     /**
-     * @function generate()
+     * @function generate
      * @returns {string}
      * Generates a report. Must be implemented by subclasses.
      */
@@ -30,7 +30,7 @@ export class MonitoringReport {
     }
 
     /**
-    * @function getMonitoringSystem()
+    * @function getMonitoringSystem
     * @returns {MonitoringSystem} - The monitoring system instance.
     *  Retrieves the monitoring system instance.
     */

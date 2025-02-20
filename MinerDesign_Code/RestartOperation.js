@@ -35,7 +35,7 @@ export class RestartOperation {
     }
 
     /**
-     * @function selectMachines()
+     * @function selectMachines
      * @param {MiningMachine[]} machines - An array of mining machines to restart.
      * @returns {void}
      * Updates the list of mining machines selected for restart.
@@ -45,7 +45,7 @@ export class RestartOperation {
     }
 
     /**
-     * @function executeRestart()
+     * @function executeRestart
      * @returns {Promise<void>}
      * Executes the restart operation for all selected machines asynchronously.
      * - Records the start time of the operation.
@@ -81,7 +81,7 @@ export class RestartOperation {
     }
 
     /**
-     * @function provideFeedback()
+     * @function provideFeedback
      * @returns {string} - A summary of the restart operation.
      * Provides detailed feedback on the restart operation.
      * 

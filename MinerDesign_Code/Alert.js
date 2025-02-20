@@ -29,7 +29,7 @@ export class Alert {
     }
 
     /**
-     * @function trigger()
+     * @function trigger
      * @param {User[]} users - List of users to notify.
      * @returns {void}
      * Triggers the alert and notifies all subscribed users.
@@ -47,7 +47,7 @@ export class Alert {
     
 
     /**
-     * @function notifyUsers()
+     * @function notifyUsers
      * @param {User[]} users - Users to be notified.
      * @returns {void}
      * Notifies users about the alert.
@@ -68,7 +68,7 @@ export class Alert {
 
     /**
      * 
-     * @function retrieveDetails()
+     * @function retrieveDetails
      * @returns {object} - Alert details.
      * Retrieves alert details.
      */

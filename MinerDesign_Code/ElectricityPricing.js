@@ -24,7 +24,7 @@ export class ElectricityPricing {
     }
 
     /**
-     * @function monitorFluctuations()
+     * @function monitorFluctuations
      * @param {number} newPrice - The updated electricity price.
      * @param {User[]} users - List of users to notify if an alert is triggered.
      * @returns {void}
@@ -42,7 +42,7 @@ export class ElectricityPricing {
     }
 
     /**
-     * @function triggerShutdownAlert()
+     * @function triggerShutdownAlert
      * @param {User[]} users - List of users to notify.
      * @private
      * @returns {void}
@@ -64,7 +64,7 @@ export class ElectricityPricing {
 
 
     /**
-     * @function displayPrice()
+     * @function displayPrice
      * @returns {void}
      * Displays the current electricity price.
      */
@@ -73,7 +73,7 @@ export class ElectricityPricing {
     }
 
     /**
-     * @function getPriceHistory()
+     * @function getPriceHistory
      * @returns {number[]} - The list of past electricity prices.
      * Retrieves price history.
      */

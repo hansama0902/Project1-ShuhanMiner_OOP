@@ -17,8 +17,8 @@ export class PerformanceReport extends MonitoringReport {
     }
 
     /**
-     * @function calculateMetrics()
      * @private
+     * @function calculateMetrics
      * Calculates performance metrics (average hashrate).
      */
     #calculateMetrics() {
@@ -29,7 +29,7 @@ export class PerformanceReport extends MonitoringReport {
     }
 
     /**
-     * @function generate()
+     * @function generate
      * @returns {string} - The performance report.
      * Generates a performance report.
      */

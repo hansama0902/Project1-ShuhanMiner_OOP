@@ -1,5 +1,5 @@
 /**
- * @module User
+ * 
  * @class User
  * @description Represents a system user. Implements Observer to receive notifications.
  * 
@@ -26,7 +26,7 @@ export class User extends Observer {
     }
 
     /**
-     * @function receiveNotification()
+     * @function receiveNotification
      * @param {object} notification - The received notification.
      * @throws {Error} If the notification is invalid.
      * Receives a notification.
@@ -40,7 +40,7 @@ export class User extends Observer {
     }
 
     /**
-     * @function getNotifications()
+     * @function getNotifications
      * @returns {object[]} - List of notifications.
      * Retrieves all notifications received by the user.
      */
@@ -49,7 +49,7 @@ export class User extends Observer {
     }
 
     /**
-     * @function  getUserId()
+     * @function  getUserId
      * @returns {string} - The user ID.
      * Retrieves the user ID.
      */
@@ -58,7 +58,7 @@ export class User extends Observer {
     }
 
     /**
-     * @function getRole()
+     * @function getRole
      * @returns {string} - The user role.
      * Retrieves the user role.
      */

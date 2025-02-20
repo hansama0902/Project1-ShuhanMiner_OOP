@@ -19,7 +19,7 @@ export class FinancialReport extends MonitoringReport {
 
 
     /**
-     * @function calculateMetrics()
+     * @function calculateMetrics
      * @private
      * @returns {void}
      * Calculates financial metrics (total hashrate, electricity cost, revenue).
@@ -32,7 +32,7 @@ export class FinancialReport extends MonitoringReport {
     }
 
     /**
-     * @function generate()
+     * @function generate
      * @returns {string} - The financial report.
      * Generates a financial report.
      */
