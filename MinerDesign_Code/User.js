@@ -45,7 +45,7 @@ export class User extends Observer {
      * Retrieves all notifications received by the user.
      */
     getNotifications() {
-        return [...this.#notifications]; // 返回一个拷贝，防止外部修改
+        return [...this.#notifications]; // Returns a copy to prevent external modifications
     }
 
     /**
