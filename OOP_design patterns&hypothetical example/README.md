@@ -341,4 +341,162 @@ class Penguin extends Bird {
 
 By following OOP principles correctly, ShuhanMiner ensures that its mining monitoring system is modular, scalable, and easy to maintain.
 
+# OOP Principles in the Mining System Code
+
+## 1. Open–Closed Principle (OCP)
+
+### **Example from the Code**
+**File: `MonitoringReport.js`**
+```javascript
+export class MonitoringReport {
+    #monitoringSystem;
+
+    constructor(monitoringSystem) {
+        if (new.target === MonitoringReport) {
+            throw new Error("Cannot instantiate abstract class MonitoringReport");
+        }
+        this.#monitoringSystem = monitoringSystem;
+    }
+
+    generateReport() {
+        throw new Error("Method 'generateReport()' must be implemented.");
+    }
+}
+```
+
+**Why this is a good example?**
+- The `MonitoringReport` class is **open for extension** (new reports can be added by subclassing) but **closed for modification** (base class remains unchanged).
+- `FinancialReport` and `PerformanceReport` extend `MonitoringReport` without modifying it.
+
+### **Bad Example (Breaking OCP)**
+```javascript
+class MonitoringReport {
+    constructor() {
+        this.reportType = "generic";
+    }
+    generateReport() {
+        if (this.reportType === "financial") {
+            return "Financial Report";
+        } else if (this.reportType === "performance") {
+            return "Performance Report";
+        }
+    }
+}
+```
+- **Issue:** Every time we add a new report type, we must modify `generateReport()`.
+- **Fix:** Use inheritance like in our original code.
+
+---
+
+## 2. Liskov Substitution Principle (LSP)
+
+### **Example from the Code**
+**File: `MiningMachine.js`**
+```javascript
+export class MiningMachine {
+    restart() {
+        console.log("Restarting machine...");
+    }
+}
+```
+**File: `AdvancedMiningMachine.js`**
+```javascript
+import { MiningMachine } from "./MiningMachine.js";
+
+export class AdvancedMiningMachine extends MiningMachine {
+    restart() {
+        console.log("Restarting advanced machine with additional safety checks...");
+    }
+}
+```
+**Why this is a good example?**
+- `AdvancedMiningMachine` **inherits** from `MiningMachine`.
+- It **overrides** `restart()` while maintaining expected behavior.
+- **Any code using `MiningMachine` can also use `AdvancedMiningMachine` without issues.**
+
+### **Bad Example (Breaking LSP)**
+```javascript
+class BasicMachine {
+    restart() {
+        throw new Error("This machine cannot be restarted!");
+    }
+}
+```
+- **Issue:** If `BasicMachine` is used in place of `MiningMachine`, it will break functionality.
+- **Fix:** All subclasses should maintain expected behavior when substituted.
+
+---
+
+## 3. Interface Segregation Principle (ISP)
+
+### **Example from the Code**
+**File: `Observer.js`**
+```javascript
+export class Observer {
+    update(notification) {
+        throw new Error("Method 'update()' must be implemented.");
+    }
+}
+```
+**File: `User.js`**
+```javascript
+import { Observer } from "./Observer.js";
+export class User extends Observer {
+    update(notification) {
+        console.log("New notification:", notification);
+    }
+}
+```
+**Why this is a good example?**
+- The `Observer` interface only contains `update()`, ensuring that `User` does not implement unnecessary methods.
+- **Prevents bloated interfaces.**
+
+### **Bad Example (Breaking ISP)**
+```javascript
+class Observer {
+    update(notification) {}
+    logNotification(notification) {}
+    saveNotification(notification) {}
+}
+```
+- **Issue:** All implementations must define `logNotification()` and `saveNotification()`, even if they don’t need them.
+- **Fix:** Split responsibilities into smaller interfaces.
+
+---
+
+## 4. Dependency Inversion Principle (DIP)
+
+### **Example from the Code**
+**File: `Observer.js`**
+```javascript
+export class Observer {
+    update(notification) {
+        throw new Error("Method 'update()' must be implemented.");
+    }
+}
+```
+**File: `User.js`**
+```javascript
+import { Observer } from "./Observer.js";
+export class User extends Observer {
+    update(notification) {
+        console.log("New notification:", notification);
+    }
+}
+```
+**Why this is a good example?**
+- `User` depends on an **abstraction (`Observer`)**, not a concrete `NotificationManager`.
+- **High-level modules (like User) do not directly depend on low-level modules.**
+
+### **Bad Example (Breaking DIP)**
+```javascript
+class User {
+    constructor() {
+        this.notificationManager = new NotificationManager();
+    }
+}
+```
+- **Issue:** `User` is directly coupled with `NotificationManager`, making changes difficult.
+- **Fix:** Depend on an interface (`Observer`) instead.
+
 
