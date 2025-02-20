@@ -47,7 +47,7 @@ export class MonitoringSystem {
 
     /**
      * @function addMachine
-     * @param {Object} machine - The mining machine to be monitored.
+     * @param {MiningMachine} machine - The mining machine to be monitored.
      * @returns {void}
      * Adds a mining machine to monitoring.
      */

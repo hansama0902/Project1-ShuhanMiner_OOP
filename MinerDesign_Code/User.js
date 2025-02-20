@@ -27,7 +27,7 @@ export class User extends Observer {
 
     /**
      * @function receiveNotification
-     * @param {object} notification - The received notification.
+     * @param {Notification} notification - The received notification.
      * @throws {Error} If the notification is invalid.
      * Receives a notification.
      */
@@ -41,11 +41,11 @@ export class User extends Observer {
 
     /**
      * @function getNotifications
-     * @returns {object[]} - List of notifications.
+     * @returns {Notification[]} - List of notifications.
      * Retrieves all notifications received by the user.
      */
     getNotifications() {
-        return [...this.#notifications]; // 返回一个拷贝，防止外部修改
+        return [...this.#notifications]; // Returns a copy to prevent external modifications
     }
 
     /**
