@@ -79,8 +79,6 @@ npx http-server out
   - **`FinancialReport`** - Extends `MonitoringReport` to provide financial insights, including electricity cost and profitability.
 - **`User`** - Represents system users (admins, investors) and receives alerts using the Observer pattern.
 - **`MonitoringReportFactory`** - Implements the Factory pattern to dynamically create `PerformanceReport` or `FinancialReport` instances.
-- **`IMonitoringSystem`** - Defines an interface for monitoring system behavior, ensuring **Dependency Inversion Principle (DIP)** compliance.
-
 ---
 
 ## **Testing**
@@ -109,11 +107,6 @@ This project has integrated AI assistance in the following ways:
    - **Model Used:** ChatGPT 4o
    - **Prompt:** "Find an effective Observer Pattern example for notification handling."
    - **How it was used:** The generated example was adapted to design the alert notification system using the Observer pattern.
-
-4. **Dependency Inversion Principle (DIP) Implementation:**
-   - **Model Used:** ChatGPT 4o
-   - **Prompt:** "How to design a piece of code to comply with DIP?"
-   - **How it was used:** The response provided guidance on implementing an interface (`IMonitoringSystem`) to separate high-level modules from low-level implementations.
 
 ---
 
