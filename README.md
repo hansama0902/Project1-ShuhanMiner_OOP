@@ -1,7 +1,7 @@
 # Project1-ShuhanMiner_OOP
 This was a multi-million-dollar idea to design an application for monitoring, managing, and maintaining mining machines.
-## Author
 
+## Author
 **Shuhan Dong**
 
 ## **Overview**
@@ -41,10 +41,9 @@ To run Jest tests:
 npm test
 ```
 ### **4. View JSDoc Documentation**  
-
 To open the `out/index.html` in your browser:
 ```bash
-npx http-server out 
+npx http-server out
 ```
 
 ---
@@ -70,6 +69,20 @@ npx http-server out
 
 ---
 
+## **Class Overview**
+### **Core Classes & Their Responsibilities**
+- **`MonitoringSystem`** - Manages the entire mining operation, including tracking machine performance and sending alerts.
+- **`MiningMachine`** - Represents individual mining devices, storing information like hashrate, temperature, and status.
+- **`Alert`** - Handles system notifications for overheating, failures, and abnormal electricity price fluctuations.
+- **`MonitoringReport`** (Abstract Class) - Base class for generating mining performance and financial reports.
+  - **`PerformanceReport`** - Extends `MonitoringReport` to analyze efficiency metrics like hashrate trends.
+  - **`FinancialReport`** - Extends `MonitoringReport` to provide financial insights, including electricity cost and profitability.
+- **`User`** - Represents system users (admins, investors) and receives alerts using the Observer pattern.
+- **`MonitoringReportFactory`** - Implements the Factory pattern to dynamically create `PerformanceReport` or `FinancialReport` instances.
+- **`IMonitoringSystem`** - Defines an interface for monitoring system behavior, ensuring **Dependency Inversion Principle (DIP)** compliance.
+
+---
+
 ## **Testing**
 ShuhanMiner uses **Jest** for unit testing. To run tests:
 ```bash
@@ -79,25 +92,44 @@ npm test
 - Mock modules simulate mining machine behavior for reliability.
 
 ---
-## **Resourse**
-[Video](https://youtu.be/R1kZ3-wLV_E)  
-[UML](https://lucid.app/lucidchart/c2aea4c8-6297-4041-a0c9-86d3542032d7/edit?viewport_loc=-1724%2C-881%2C4911%2C2993%2C0_0&invitationId=inv_2ccd1b6b-e5bf-4e7c-9735-a7919fcdd857)  
-[Figma](https://www.figma.com/design/LzSmddUo5EEPUXzetZANBV/ShuhanMiner?node-id=0-1&m=dev&t=JuRjF2fUYOPkUmnD-1)  
-[OOP_design patterns&hypothetical example](https://github.com/hansama0902/Project1-ShuhanMiner_OOP/tree/main/OOP_design%20patterns%26hypothetical%20example)  
-[Business Requirements](https://github.com/hansama0902/Project1-ShuhanMiner_OOP/blob/main/Business%20Requirements/ShuhanMiner%20Business%20Requirements%20Document.pdf)
 
-
-
----
 ## **AI Usage**
 This project has integrated AI assistance in the following ways:
-1. **Test File Design:** ChatGPT 4o was used to help design structured and efficient test cases.
-2. **JSDoc Example Creation:** ChatGPT 4o was used to generate an example JSDoc structure for documentation.
-3. **Observer Pattern Example:** ChatGPT 4o assisted in finding an effective Observer Pattern example for notification handling.  
----
-## License
+1. **Test File Design:**
+   - **Model Used:** ChatGPT 4o
+   - **Prompt:** "Help me design a test suite for classes."
+   - **How it was used:** The generated code was used as a reference to design structured and efficient test cases for different classes.
 
+2. **JSDoc Example Creation:**
+   - **Model Used:** ChatGPT 4o
+   - **Prompt:** "Can you give me an example of a JSDoc document? I want to use it to document my code."
+   - **How it was used:** The provided JSDoc example was used to create structured documentation for the project.
+
+3. **Observer Pattern Implementation:**
+   - **Model Used:** ChatGPT 4o
+   - **Prompt:** "Find an effective Observer Pattern example for notification handling."
+   - **How it was used:** The generated example was adapted to design the alert notification system using the Observer pattern.
+
+4. **Dependency Inversion Principle (DIP) Implementation:**
+   - **Model Used:** ChatGPT 4o
+   - **Prompt:** "How to design a piece of code to comply with DIP?"
+   - **How it was used:** The response provided guidance on implementing an interface (`IMonitoringSystem`) to separate high-level modules from low-level implementations.
+
+---
+
+## **Resources**
+- [Video](https://youtu.be/R1kZ3-wLV_E)  
+- [UML](https://lucid.app/lucidchart/c2aea4c8-6297-4041-a0c9-86d3542032d7/edit?viewport_loc=-1724%2C-881%2C4911%2C2993%2C0_0&invitationId=inv_2ccd1b6b-e5bf-4e7c-9735-a7919fcdd857)  
+- [Figma](https://www.figma.com/design/LzSmddUo5EEPUXzetZANBV/ShuhanMiner?node-id=0-1&m=dev&t=JuRjF2fUYOPkUmnD-1)  
+- [OOP Design Patterns & Hypothetical Example](https://github.com/hansama0902/Project1-ShuhanMiner_OOP/tree/main/OOP_design%20patterns%26hypothetical%20example)  
+- [Business Requirements](https://github.com/hansama0902/Project1-ShuhanMiner_OOP/blob/main/Business%20Requirements/ShuhanMiner%20Business%20Requirements%20Document.pdf)
+
+---
+
+## **License**
 This project is licensed under the **MIT License**.
+
+
 
 
 
