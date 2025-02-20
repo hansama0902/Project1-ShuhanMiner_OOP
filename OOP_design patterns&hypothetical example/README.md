@@ -261,11 +261,11 @@ This ensures that attributes like `temperature` cannot be modified directly, pre
 ```javascript
 class BankAccount {
     constructor(balance) {
-        this.balance = balance; // Exposing the balance directly
+        this.balance = balance; 
     }
 }
 let account = new BankAccount(1000);
-account.balance = -500; // Invalid modification
+account.balance = -500; 
 ```
 **Issue:** The balance should be accessed and modified via methods instead of being directly exposed.
 
@@ -360,4 +360,181 @@ class Penguin extends Bird {
 ---
 
 By following OOP principles correctly, ShuhanMiner ensures that its mining monitoring system is modular, scalable, and easy to maintain.
+
+# SOLID Principles in ShuhanMiner
+
+## Single Responsibility Principle (SRP)
+**Why It's a Good Application of OOP**
+The `Alert` class in ShuhanMiner follows SRP by only handling alert-related logic. It is separate from the `MonitoringSystem` class, which manages machine performance. This separation ensures that each class has only one reason to change.
+
+**Example from Code:**
+```javascript
+export class Alert {
+    #alertType;
+    #alertLevel;
+    #timestamp;
+    #triggeredBy;
+    #notifiedUsers;
+
+    constructor(alertType, alertLevel, timestamp) {
+        this.#alertType = alertType;
+        this.#alertLevel = alertLevel;
+        this.#timestamp = timestamp;
+        this.#notifiedUsers = [];
+    }
+}
+```
+
+#### Hypothetical Example That Breaks SRP
+```javascript
+class Report {
+    generateReport() {
+        return "Report Data";
+    }
+    saveToFile(filename) {
+        fs.writeFileSync(filename, this.generateReport());
+    }
+}
+```
+**Issue:** This class handles both report generation and file saving, violating SRP.
+
+---
+
+## Open-Closed Principle (OCP)
+**Why It's a Good Application of OOP**
+The `MonitoringReportFactory` follows OCP by allowing new report types to be added without modifying its existing logic.
+
+**Example from Code:**
+```javascript
+export class MonitoringReportFactory {
+    static generateReport(type, monitoringSystem) {
+        switch (type.toLowerCase()) {
+            case "financial":
+                return new FinancialReport(monitoringSystem);
+            case "performance":
+                return new PerformanceReport(monitoringSystem);
+            default:
+                throw new Error("Invalid report type");
+        }
+    }
+}
+```
+
+#### Hypothetical Example That Breaks OCP
+```javascript
+class Discount {
+    applyDiscount(customerType, price) {
+        if (customerType === "VIP") {
+            return price * 0.8;
+        } else {
+            return price * 0.9;
+        }
+    }
+}
+```
+**Issue:** Adding new customer types requires modifying this class instead of extending it.
+
+---
+
+## Liskov Substitution Principle (LSP)
+**Why It's a Good Application of OOP**
+`FinancialReport` and `PerformanceReport` correctly extend `MonitoringReport`, ensuring they can replace it without issues.
+
+**Example from Code:**
+```javascript
+export class PerformanceReport extends MonitoringReport {
+    generate() {
+        return "Performance data...";
+    }
+}
+```
+
+#### Hypothetical Example That Breaks LSP
+```javascript
+class Rectangle {
+    constructor(width, height) {
+        this.width = width;
+        this.height = height;
+    }
+    setWidth(width) {
+        this.width = width;
+    }
+    setHeight(height) {
+        this.height = height;
+    }
+}
+class Square extends Rectangle {
+    setWidth(width) {
+        this.width = this.height = width;
+    }
+}
+```
+**Issue:** `Square` modifies `setWidth()` in a way that changes expected behavior.
+
+---
+
+## Interface Segregation Principle (ISP)
+**Why It's a Good Application of OOP**
+The `Observer` pattern ensures that observers only implement relevant notification methods.
+
+**Example from Code:**
+```javascript
+export class Observer {
+    update() {
+        throw new Error("Method 'update()' must be implemented.");
+    }
+}
+```
+
+#### Hypothetical Example That Breaks ISP
+```javascript
+class Worker {
+    work() {}
+    eat() {}
+}
+class Robot extends Worker {
+    eat() {
+        throw new Error("Robots do not eat!");
+    }
+}
+```
+**Issue:** The `Robot` class is forced to implement a method (`eat()`) it doesn't need.
+
+---
+
+## Dependency Inversion Principle (DIP)
+**Why It's a Good Application of OOP**
+The `MonitoringSystemInterface` ensures that high-level modules depend on abstractions instead of concrete implementations, allowing different implementations of monitoring systems without changing the high-level logic.
+
+**Example from Code:**
+```javascript
+export class MonitoringSystemInterface {
+    getMachines() {
+        throw new Error("Method 'getMachines()' must be implemented.");
+    }
+    getFaultAlerts() {
+        throw new Error("Method 'getFaultAlerts()' must be implemented.");
+    }
+}
+```
+
+#### Hypothetical Example That Breaks DIP
+```javascript
+class FileLogger {
+    log(message) {
+        console.log(`Logging to file: ${message}`);
+    }
+}
+class UserService {
+    constructor() {
+        this.logger = new FileLogger();
+    }
+    registerUser(username) {
+        this.logger.log(`User ${username} registered`);
+    }
+}
+```
+**Issue:** `UserService` is tightly coupled to `FileLogger`, making it hard to switch to another logging mechanism.
+
+By following SOLID principles correctly, ShuhanMiner ensures that its mining monitoring system is modular, scalable, and easy to maintain.
 
