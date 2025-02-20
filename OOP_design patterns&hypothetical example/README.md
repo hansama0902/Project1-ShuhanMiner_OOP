@@ -343,8 +343,6 @@ By following OOP principles correctly, ShuhanMiner ensures that its mining monit
 
 # OOP Principles in the Mining System Code
 
-# OOP Principles in the Mining System Code
-
 ## 1. Single Responsibility Principle (SRP)
 
 ### **Example from the Code**
