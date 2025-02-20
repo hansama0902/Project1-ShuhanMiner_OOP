@@ -172,7 +172,7 @@ publisher.notify("Breaking News!"); // No subscribers added, notification fails
 ## Abstraction
 
 ### Why It's a Good Application of OOP
-One of the best examples of **abstraction** in ShuhanMiner is the `MonitoringSystem` class. This class abstracts the complexities of managing mining machines and provides a clear, user-friendly interface for interacting with them. The class hides implementation details such as how mining machine data is stored and processed, allowing users to retrieve and manage machines without dealing with internal logic.
+The examples of **abstraction** in ShuhanMiner is the `MonitoringSystem` class. This class abstracts the complexities of managing mining machines and provides a clear, user-friendly interface for interacting with them. The class hides implementation details such as how mining machine data is stored and processed, allowing users to retrieve and manage machines without dealing with internal logic.
 
 
 **Example from Code:**
@@ -222,7 +222,7 @@ class Car {
 ## Encapsulation
 
 ### Why It's a Good Application of OOP
-The `MiningMachine` class is a great example of **encapsulation** in ShuhanMiner. It uses private fields to ensure that mining machine attributes such as temperature, status, and IP address are not directly modified by external code. Instead, controlled access methods (getters and setters) are provided to retrieve necessary details.  
+The `MiningMachine` class is a example of **encapsulation** in ShuhanMiner. It uses private fields to ensure that mining machine attributes such as temperature, status, and IP address are not directly modified by external code. Instead, controlled access methods (getters and setters) are provided to retrieve necessary details.  
 
 **Example from Code:**
 ```javascript
@@ -265,7 +265,7 @@ account.balance = -500;
 ## Inheritance
 
 ### Why It's a Good Application of OOP
-ShuhanMiner effectively applies **inheritance** in its reporting system. The `FinancialReport` and `PerformanceReport` classes both extend the base `MonitoringReport` class, reusing shared functionalities while adding specific behaviors for financial and performance analysis.  
+ShuhanMiner applies **inheritance** in its reporting system. The `FinancialReport` and `PerformanceReport` classes both extend the base `MonitoringReport` class, reusing shared functionalities while adding specific behaviors for financial and performance analysis.  
 
 **Example from Code:**
 ```javascript
@@ -304,7 +304,7 @@ class Dog extends Animal {
 ## Polymorphism
 
 ### Why It's a Good Application of OOP
-ShuhanMiner effectively utilizes **polymorphism** in its reporting system. The `MonitoringReportFactory` dynamically generates different types of reports (financial, performance) based on the input type. This ensures that different report types follow the same interface while executing their unique behaviors.
+ShuhanMiner utilizes **polymorphism** in its reporting system. The `MonitoringReportFactory` dynamically generates different types of reports (financial, performance) based on the input type. This ensures that different report types follow the same interface while executing their unique behaviors.
 **Example from Code:**
 ```javascript
 export class MonitoringReportFactory {
