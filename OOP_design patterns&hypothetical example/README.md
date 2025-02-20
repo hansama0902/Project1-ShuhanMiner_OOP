@@ -167,3 +167,208 @@ publisher.notify("Breaking News!"); // No subscribers added, notification fails
 ```
 - **Problem**: Without a proper subscribe() method, no users can dynamically register, breaking the observer model.
 
+# OOP and SOLID Principles in ShuhanMiner
+
+## OOP Principles
+
+### Abstraction
+**Why it's a good application of OOP:**
+- The `MonitoringSystem` class abstracts complex mining operations, exposing only necessary functionalities to the user.
+- The `ElectricityPricing` class hides the internal calculations of electricity pricing fluctuations while providing an interface for alerts.
+
+**Example from Code:**
+```javascript
+export class MonitoringSystem {
+    static #instance; // Private static instance for Singleton
+
+    #miningMachines;
+    #faultType;
+    #firmwareVersion;
+    #overheatedMachines;
+
+    constructor() {
+        if (!MonitoringSystem.#instance) {
+            MonitoringSystem.#instance = this;
+            this.#miningMachines = [];
+        }
+        return MonitoringSystem.#instance;
+    }
+
+    getMachines() {
+        return this.#miningMachines;
+    }
+}
+```
+
+---
+
+### Encapsulation
+**Why it's a good application of OOP:**
+- The `MiningMachine` class uses private fields (`#temperature`, `#status`) to prevent direct modification from external classes.
+- The `MonitoringSystem` class maintains private fields to ensure data integrity.
+
+**Example from Code:**
+```javascript
+export class MiningMachine {
+    #ipAddress;
+    #hashRate;
+    #temperature;
+    #model;
+    #status;
+
+    constructor(ipAddress, hashRate, temperature, model, status) {
+        this.#ipAddress = ipAddress;
+        this.#hashRate = hashRate;
+        this.#temperature = temperature;
+        this.#model = model;
+        this.#status = status;
+    }
+
+    getTemperature() {
+        return this.#temperature;
+    }
+}
+```
+
+---
+
+### Inheritance
+**Why it's a good application of OOP:**
+- `PerformanceReport` and `FinancialReport` both extend `MonitoringReport`, reusing shared reporting logic.
+- `User` extends `Observer`, allowing users to receive notifications in a structured way.
+
+**Example from Code:**
+```javascript
+import { MonitoringReport } from './MonitoringReport.js';
+
+export class FinancialReport extends MonitoringReport {
+    #totalHashrate;
+    #electricityCost;
+    #revenue;
+
+    constructor(monitoringSystem) {
+        super(monitoringSystem);
+        this.#calculateMetrics();
+    }
+}
+```
+
+---
+
+### Polymorphism
+**Why it's a good application of OOP:**
+- The `MonitoringReportFactory` uses polymorphism to generate different types of reports dynamically.
+- `Observer` pattern allows different observer types to subscribe to notifications.
+
+**Example from Code:**
+```javascript
+export class MonitoringReportFactory {
+    static generateReport(type, monitoringSystem) {
+        switch (type.toLowerCase()) {
+            case "financial":
+                return new FinancialReport(monitoringSystem);
+            case "performance":
+                return new PerformanceReport(monitoringSystem);
+            default:
+                throw new Error("Invalid report type");
+        }
+    }
+}
+```
+
+---
+
+## SOLID Principles
+
+### Single Responsibility Principle (SRP)
+**Why it's a good application of OOP:**
+- The `Alert` class only handles alerts, separate from `MonitoringSystem`, which focuses on tracking machine performance.
+
+**Example from Code:**
+```javascript
+export class Alert {
+    #alertType;
+    #alertLevel;
+    #timestamp;
+    #triggeredBy;
+    #notifiedUsers;
+
+    constructor(alertType, alertLevel, timestamp) {
+        this.#alertType = alertType;
+        this.#alertLevel = alertLevel;
+        this.#timestamp = timestamp;
+        this.#notifiedUsers = [];
+    }
+}
+```
+
+---
+
+### Open-Closed Principle (OCP)
+**Why it's a good application of OOP:**
+- `MonitoringReportFactory` can generate new types of reports without modifying its existing logic.
+
+**Example from Code:**
+```javascript
+export class MonitoringReportFactory {
+    static generateReport(type, monitoringSystem) {
+        switch (type.toLowerCase()) {
+            case "financial":
+                return new FinancialReport(monitoringSystem);
+            case "performance":
+                return new PerformanceReport(monitoringSystem);
+            default:
+                throw new Error("Invalid report type");
+        }
+    }
+}
+```
+
+---
+
+### Liskov Substitution Principle (LSP)
+**Why it's a good application of OOP:**
+- `FinancialReport` and `PerformanceReport` correctly extend `MonitoringReport`, ensuring they can replace it without issues.
+
+**Example from Code:**
+```javascript
+export class PerformanceReport extends MonitoringReport {
+    generate() {
+        return "Performance data...";
+    }
+}
+```
+
+---
+
+### Interface Segregation Principle (ISP)
+**Why it's a good application of OOP:**
+- `Observer` pattern ensures that observers only implement relevant notification methods.
+
+**Example from Code:**
+```javascript
+export class Observer {
+    update() {
+        throw new Error("Method 'update()' must be implemented.");
+    }
+}
+```
+
+---
+
+### Dependency Inversion Principle (DIP)
+**Why it's a good application of OOP:**
+- `IMonitoringSystem` ensures that high-level modules depend on abstractions instead of concrete implementations.
+
+**Example from Code:**
+```javascript
+export class IMonitoringSystem {
+    getMachines() {
+        throw new Error("Method 'getMachines()' must be implemented.");
+    }
+}
+```
+
+By following OOP and SOLID principles correctly, ShuhanMiner ensures that its mining monitoring system is modular, scalable, and easy to maintain.
+
+
