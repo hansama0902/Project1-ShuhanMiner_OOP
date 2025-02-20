@@ -24,7 +24,7 @@ ShuhanMiner is an **OOP-based mining farm management system** designed to effici
 git clone https://github.com/your-repo/Project1-ShuhanMiner_OOP.git
 cd Project1-ShuhanMiner_OOP
 ```
-
+Tiantian's note: I cannot git clone due to authorization reason, so I download the zip file instead.
 ### **2. Install Dependencies**
 Ensure you have **Node.js** installed, then run:
 ```bash
