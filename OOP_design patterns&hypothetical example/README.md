@@ -343,7 +343,56 @@ By following OOP principles correctly, ShuhanMiner ensures that its mining monit
 
 # OOP Principles in the Mining System Code
 
-## 1. Open–Closed Principle (OCP)
+# OOP Principles in the Mining System Code
+
+## 1. Single Responsibility Principle (SRP)
+
+### **Example from the Code**
+**File: `ElectricityPricing.js`**
+```javascript
+export class ElectricityPricing {
+    #currentPrice;
+    #costThreshold;
+    #priceHistory;
+
+    constructor(initialPrice, costThreshold) {
+        this.#currentPrice = initialPrice;
+        this.#costThreshold = costThreshold;
+        this.#priceHistory = [];
+    }
+
+    updatePrice(newPrice) {
+        this.#currentPrice = newPrice;
+        this.#priceHistory.push(newPrice);
+    }
+}
+```
+**Why this is a good example?**
+- The `ElectricityPricing` class has a **single responsibility**: tracking and updating electricity prices.
+- It does not manage alerts, financial reports, or any unrelated logic.
+
+### **Bad Example (Breaking SRP)**
+```javascript
+class ElectricityPricing {
+    constructor() {
+        this.currentPrice = 0;
+        this.alerts = [];
+    }
+
+    updatePrice(newPrice) {
+        this.currentPrice = newPrice;
+        if (newPrice > 100) {
+            this.alerts.push("High electricity price alert!");
+        }
+    }
+}
+```
+- **Issue:** The class is responsible for both tracking prices and handling alerts.
+- **Fix:** Move alert logic to a separate class, such as `ElectricityAlert`.
+
+---
+
+## 2. Open–Closed Principle (OCP)
 
 ### **Example from the Code**
 **File: `MonitoringReport.js`**
@@ -388,7 +437,7 @@ class MonitoringReport {
 
 ---
 
-## 2. Liskov Substitution Principle (LSP)
+## 3. Liskov Substitution Principle (LSP)
 
 ### **Example from the Code**
 **File: `MiningMachine.js`**
@@ -427,7 +476,7 @@ class BasicMachine {
 
 ---
 
-## 3. Interface Segregation Principle (ISP)
+## 4. Interface Segregation Principle (ISP)
 
 ### **Example from the Code**
 **File: `Observer.js`**
@@ -464,7 +513,7 @@ class Observer {
 
 ---
 
-## 4. Dependency Inversion Principle (DIP)
+## 5. Dependency Inversion Principle (DIP)
 
 ### **Example from the Code**
 **File: `Observer.js`**
@@ -498,5 +547,4 @@ class User {
 ```
 - **Issue:** `User` is directly coupled with `NotificationManager`, making changes difficult.
 - **Fix:** Depend on an interface (`Observer`) instead.
-
 
