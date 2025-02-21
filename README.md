@@ -82,7 +82,7 @@ npx http-server out
 - **`Observer`** - Defines the contract for classes that observe and respond to system updates.
 - **`Notification`** - Represents system notifications and messages sent to users.
 - **`RestartOperation`** - Manages batch restart operations for mining machines, ensuring safe and efficient restarts.
-- **`ObserverManager`** - Manages registered observers and broadcasts updates to them.
+- **`ObserverManager`** - Manages registered observers and updates to them.
 ---
 
 ## **Testing**
