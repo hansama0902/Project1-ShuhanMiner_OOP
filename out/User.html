@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: MonitoringReport.js</title>
+    <title>JSDoc: Class: User</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,57 +17,219 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: MonitoringReport.js</h1>
+    <h1 class="page-title">Class: User</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
- * @description Abstract class for generating mining reports.
- * 
- * Implements:
- * - **Encapsulation**: Uses private fields for data protection.
- * - **Open-Closed Principle**: Allows extension for new report types.
- */
-export class MonitoringReport {
-    #monitoringSystem;
+        <h2><span class="attribs"><span class="type-signature"></span></span>User<span class="signature">(userId, role)</span><span class="type-signature"></span></h2>
+        
+    
+</header>
 
-    /**
-     * @param {MonitoringSystem} monitoringSystem - The monitoring system instance.
-     */
-    constructor(monitoringSystem) {
-        if (new.target === MonitoringReport) {
-            throw new Error("Cannot instantiate an abstract class.");
-        }
-        this.#monitoringSystem = monitoringSystem;
-    }
+<article>
+    <div class="container-overview">
+    
+        
 
-    /**
-     * @function generate
-     * @returns {string}
-     * Generates a report. Must be implemented by subclasses.
-     */
-    generate() {
-        throw new Error("Generate method must be implemented by subclasses.");
-    }
+    
 
-    /**
-    * @function getMonitoringSystem
-    * @returns {MonitoringSystem} - The monitoring system instance.
-    *  Retrieves the monitoring system instance.
-    */
-    getMonitoringSystem() {
-        return this.#monitoringSystem;
-    }
-}
+    
+    <h4 class="name" id="User"><span class="type-signature"></span>new User<span class="signature">(userId, role)</span><span class="type-signature"></span></h4>
+    
 
-</code></pre>
-        </article>
-    </section>
+    
+
+
+
+<div class="description">
+    Represents a system user. Implements Observer to receive notifications.
+Implements:
+- **Single Responsibility Principle (SRP)**: User handles its own notifications.
+- **Observer Pattern**: Acts as an observer that receives updates from `NotificationManager`.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>userId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Unique user ID.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>role</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">User role (e.g., Admin, Operator).</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="User.js.html">User.js</a>, <a href="User.js.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="User.html">User</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
