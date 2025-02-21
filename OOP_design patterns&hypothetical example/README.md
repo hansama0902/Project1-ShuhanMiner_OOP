@@ -8,12 +8,19 @@ This document explains the application of three design patterns in my SHUHANMINE
 ###  **Implementation**
 ```js
 export class MonitoringSystem {
-    static #instance;
-    #machines;
+    static #instance; // Private static instance for Singleton
 
-    constructor() {
+    #miningMachines;
+    #faultType;
+    #firmwareVersion;
+    #overheatedMachines;
+
+   constructor() {
         if (!MonitoringSystem.#instance) {
-            this.#machines = [];
+            this.#miningMachines = [];
+            this.#faultType = null; // Default: No faults
+            this.#firmwareVersion = "v1.0.0"; // Default firmware version
+            this.#overheatedMachines = [];
             MonitoringSystem.#instance = this;
         }
         return MonitoringSystem.#instance;
@@ -68,6 +75,16 @@ console.log(db1.connection !== db2.connection); // true, breaking Singleton
 ### **Implementation**
 ```js
 export class MonitoringReportFactory {
+    static factoryName = "Mining Report Factory"; // Custom factory property
+
+    /**
+     * @function generateReport
+     * @param {string} type - The type of report ("financial", "performance", "maintenance").
+     * @param {MonitoringSystem} monitoringSystem - The monitoring system instance.
+     * @returns {MonitoringReport} - A new report instance.
+     * @throws {Error} If an invalid report type is provided.
+     * Generates a specific type of monitoring report.
+     */
     static generateReport(type, monitoringSystem) {
         switch (type.toLowerCase()) {
             case "financial":
@@ -109,7 +126,16 @@ if (reportType === "financial") {
 ### **Implementation**
 ```js
 export class User extends Observer {
-    eceiveNotification(notification) {
+    #userId;
+    #role;
+    #notifications;
+    constructor(userId, role) {
+        super();
+        this.#userId = userId;
+        this.#role = role;
+        this.#notifications = [];
+    }
+     receiveNotification(notification) {
         if (!notification || typeof notification.content !== "string") {
             throw new Error("Invalid notification object. Expected { content: string }.");
         }
