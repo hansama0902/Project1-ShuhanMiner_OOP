@@ -518,14 +518,66 @@ class Square extends Rectangle {
 ## **Interface Segregation Principle (ISP)**
 
 ### **Why It's a Good Application of OOP**
-In `Observer.js`, the `Observer` class only provides `receiveNotification()` without forcing unnecessary methods.
+In `Alert.js`, the `Alert` class only provides `trigger()&& notifyUsers()` without forcing unnecessary methods.
 
 ### **Code Example**
 ```javascript
-export class Observer {
-    receiveNotification(notification) {
-        console.log("Notification received:", notification);
-        throw new Error("Method 'update' must be implemented.");
+import { User } from "./User.js";
+/**
+ * @description Represents an alert triggered by a mining machine or electricity pricing.
+ * 
+ * Implements:
+ * - **Encapsulation**: Uses private fields for data protection.
+ */
+export class Alert {
+    #alertType;
+    #alertLevel;
+    #timestamp;
+    #triggeredBy;
+    #notifiedUsers;
+
+    constructor(alertType, alertLevel, timestamp, triggeredBy) {
+        this.#alertType = alertType;
+        this.#alertLevel = alertLevel;
+        this.#timestamp = timestamp;
+        this.#triggeredBy = triggeredBy;
+        this.#notifiedUsers = [];
+    }
+
+    /**
+     * @function trigger
+     * @param {User[]} users - List of users to notify.
+     * @returns {void}
+     * Triggers the alert and notifies all subscribed users.
+     */
+    trigger(users) {
+        console.log(`Alert Triggered: ${this.#alertType} - Level: ${this.#alertLevel}`);
+    
+        if (!Array.isArray(users) || users.length === 0) {
+            console.warn("No users to notify.");
+            return;
+        }
+        
+        this.notifyUsers(users);
+    }
+
+    /**
+     * @function notifyUsers
+     * @param {User[]} users - Users to be notified.
+     * @returns {void}
+     * Notifies users about the alert.
+     */
+    notifyUsers(users) {
+        users.forEach(user => {
+            if (user instanceof User) {
+                const notification = {
+                    content: `Alert: ${this.#alertType} - Level: ${this.#alertLevel}`,
+                    timestamp: this.#timestamp
+                };
+                user.receiveNotification(notification); 
+                this.#notifiedUsers.push(user.getUserId());
+            }
+        });
     }
 }
 ```
