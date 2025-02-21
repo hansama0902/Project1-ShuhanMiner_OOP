@@ -73,13 +73,13 @@ npx http-server out
 - **`MonitoringSystem`** - Manages the entire mining operation, including tracking machine performance and sending alerts.
 - **`MiningMachine`** - Represents individual mining devices, storing information like hashrate, temperature, and status.
 - **`Alert`** - Handles system notifications for overheating, failures, and abnormal electricity price fluctuations.
-- **`MonitoringReport`** (Abstract Class) - Base class for generating mining performance and financial reports.
+- **`MonitoringReport`** - Base class for generating mining performance and financial reports.
   - **`PerformanceReport`** - Extends `MonitoringReport` to analyze efficiency metrics like hashrate trends.
   - **`FinancialReport`** - Extends `MonitoringReport` to provide financial insights, including electricity cost and profitability.
-- **`User`** - Represents system users (admins, investors) and receives alerts using the Observer pattern.
+- **`User`** - Represents system users and receives alerts using the Observer pattern.
 - **`MonitoringReportFactory`** - Implements the Factory pattern to dynamically create `PerformanceReport` or `FinancialReport` instances.
 - **`ElectricityPricing`** - Tracks electricity cost fluctuations and triggers alerts when thresholds are exceeded.
-- **`Observer`** (Interface) - Defines the contract for classes that observe and respond to system updates.
+- **`Observer`** - Defines the contract for classes that observe and respond to system updates.
 - **`Notification`** - Represents system notifications and messages sent to users.
 - **`RestartOperation`** - Manages batch restart operations for mining machines, ensuring safe and efficient restarts.
 - **`ObserverManager`** - Manages registered observers and broadcasts updates to them.
