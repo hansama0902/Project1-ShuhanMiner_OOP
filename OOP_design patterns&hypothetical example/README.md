@@ -515,34 +515,35 @@ class Square extends Rectangle {
 
 ---
 
-## Interface Segregation Principle (ISP)
+## **Interface Segregation Principle (ISP)**
 
-### Why It's a Good Application of OOP
-The `Observer` class in ShuhanMiner follows ISP by providing a contract for notification receivers. However, if future implementations require different types of observers (e.g., `EmailObserver`, `SMSObserver`), the current structure could force classes to implement methods they don't need. A better approach is to create separate interfaces for different types of notification handlers.
+### **Why It's a Good Application of OOP**
+In `Observer.js`, the `Observer` class only provides `receiveNotification()` without forcing unnecessary methods.
 
-#### Suggested Refactor for ISP Compliance
+### **Code Example**
 ```javascript
-// Define an interface for notification receivers
-export class INotificationReceiver {
+export class Observer {
     receiveNotification(notification) {
-        throw new Error("Method 'receiveNotification' must be implemented.");
-    }
-}
-
-// EmailObserver implements only the necessary methods
-export class EmailObserver extends INotificationReceiver {
-    receiveNotification(notification) {
-        console.log("Email received:", notification);
-    }
-}
-
-// SMSObserver implements only the necessary methods
-export class SMSObserver extends INotificationReceiver {
-    receiveNotification(notification) {
-        console.log("SMS received:", notification);
+        console.log("Notification received:", notification);
+        throw new Error("Method 'update' must be implemented.");
     }
 }
 ```
+
+### **Hypothetical Example That Breaks ISP**
+```javascript
+class Worker {
+    work() {}
+    eat() {}
+}
+class Robot extends Worker {
+    eat() {
+        throw new Error("Robots do not eat!");
+    }
+}
+```
+
+**Issue:** `Robot` is forced to implement `eat()`, which it does not need.
 
 ---
 
