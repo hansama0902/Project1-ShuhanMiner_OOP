@@ -1,5 +1,4 @@
 /**
- * @class Notification
  * @description Represents a system notification.
  * 
  * Implements:
@@ -22,7 +21,6 @@ export class Notification {
     #user;
 
     /**
-     * @constructor
      * @param {string} id - Unique notification ID.
      * @param {string} content - Notification message.
      * @param {Date} timestamp - Notification timestamp.

@@ -1,5 +1,4 @@
 /**
- * @class MiningMachine
  * @description Represents a mining machine with monitoring and restart capabilities.
  * 
  * Adheres to:

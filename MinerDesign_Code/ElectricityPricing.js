@@ -1,18 +1,15 @@
-/**
- * @class ElectricityPricing
+import { Alert } from "./Alert.js";
+/** 
  * @description Monitors electricity price fluctuations and triggers alerts if thresholds are exceeded.
- * 
  * Implements:
  * - **Encapsulation**: Uses private fields for data protection.
  */
-import { Alert } from "./Alert.js";
 export class ElectricityPricing {
     #currentPrice;
     #costThreshold;
     #priceHistory;
 
     /**
-     * @constructor
      * @param {number} initialPrice - The initial electricity price.
      * @param {number} costThreshold - The maximum acceptable price before triggering an alert.
      * @param {number[]} priceHistory - The history of electricity prices.

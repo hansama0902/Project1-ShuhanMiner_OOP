@@ -1,11 +1,10 @@
+import { User } from "./User.js";
 /**
- * @class Alert
  * @description Represents an alert triggered by a mining machine or electricity pricing.
  * 
  * Implements:
  * - **Encapsulation**: Uses private fields for data protection.
  */
-import { User } from "./User.js";
 export class Alert {
     #alertType;
     #alertLevel;
@@ -14,7 +13,7 @@ export class Alert {
     #notifiedUsers;
 
     /**
-     * @constructor
+     * 
      * @param {string} alertType - Type of alert (e.g., "Temperature", "Electricity").
      * @param {string} alertLevel - Severity of alert (e.g., "High", "Critical").
      * @param {Date} timestamp - Time when the alert was triggered.

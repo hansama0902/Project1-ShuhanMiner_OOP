@@ -1,15 +1,13 @@
+import { MonitoringReport } from './MonitoringReport.js';;
 /**
- * @class FinancialReport
  * @description Provides financial insights on mining operations.
  * @extends {MonitoringReport}
  */
-import { MonitoringReport } from './MonitoringReport.js';;
 export class FinancialReport extends MonitoringReport {
     #totalHashrate;
     #electricityCost;
     #revenue;
     /**
-    * @constructor
     * @param {MonitoringSystem} monitoringSystem - The monitoring system instance.
     */
     constructor(monitoringSystem) {

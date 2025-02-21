@@ -1,10 +1,8 @@
-
-/**
- * @class MonitoringReportFactory
- * @description Factory for generating different types of monitoring reports.
- */
 import {FinancialReport} from "./FinancialReport.js";
 import {PerformanceReport} from "./PerformanceReport.js";
+/**
+ * @description Factory for generating different types of monitoring reports.
+ */
 export class MonitoringReportFactory {
     static factoryName = "Mining Report Factory"; // Custom factory property
 

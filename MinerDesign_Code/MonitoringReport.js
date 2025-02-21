@@ -1,5 +1,4 @@
 /**
- * @class MonitoringReport
  * @description Abstract class for generating mining reports.
  * 
  * Implements:
@@ -10,7 +9,6 @@ export class MonitoringReport {
     #monitoringSystem;
 
     /**
-     * @constructor
      * @param {MonitoringSystem} monitoringSystem - The monitoring system instance.
      */
     constructor(monitoringSystem) {

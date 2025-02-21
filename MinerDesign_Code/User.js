@@ -1,6 +1,5 @@
 /**
  * 
- * @class User
  * @description Represents a system user. Implements Observer to receive notifications.
  * 
  * Implements:
@@ -14,7 +13,6 @@ export class User extends Observer {
     #notifications;
 
     /**
-     * @constructor
      * @param {string} userId - Unique user ID.
      * @param {string} role - User role (e.g., Admin, Operator).
      */

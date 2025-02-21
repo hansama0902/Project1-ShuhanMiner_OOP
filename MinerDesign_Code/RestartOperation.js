@@ -1,5 +1,4 @@
 /**
- * @class RestartOperation
  * @description Manages batch restart operations for mining machines.
  * 
  * This class provides functionality to:
@@ -10,7 +9,6 @@
  */
 export class RestartOperation {
     /**
-     * @constructor
      * @param {MiningMachine[]} selectedMachines - List of mining machines to restart.
      * 
      * @property {MiningMachine[]} #selectedMachines - The list of selected machines for restart.

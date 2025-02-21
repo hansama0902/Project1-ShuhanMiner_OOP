@@ -1,5 +1,4 @@
 /**
- * @class MonitoringSystem
  * @description Manages and monitors mining machines.
  * 
  * Implements:

@@ -1,9 +1,7 @@
-/**
- * @class PerformanceReport
+import { MonitoringReport } from './MonitoringReport.js';/**
  * @description Provides performance insights, including average hashrate.
  * Implements: Interface Segregation Principle, ISP
  */
-import { MonitoringReport } from './MonitoringReport.js';
 export class PerformanceReport extends MonitoringReport {
     #averageHashrate;
 

@@ -1,5 +1,4 @@
 /**
- * @interface Observer
  * @description Defines the contract for objects that observe notifications.
  * 
  * Implements:
