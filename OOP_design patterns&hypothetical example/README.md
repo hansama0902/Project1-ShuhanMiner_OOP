@@ -211,16 +211,22 @@ export class MonitoringSystem {
     #firmwareVersion;
     #overheatedMachines;
 
-    constructor() {
+     constructor() {
         if (!MonitoringSystem.#instance) {
-            MonitoringSystem.#instance = this;
             this.#miningMachines = [];
+            this.#faultType = null; // Default: No faults
+            this.#firmwareVersion = "v1.0.0"; // Default firmware version
+            this.#overheatedMachines = [];
+            MonitoringSystem.#instance = this;
         }
         return MonitoringSystem.#instance;
     }
 
-    getMachines() {
+     getMiningMachines() {
         return this.#miningMachines;
+    }
+    getOverheatedMachines() {
+        return this.#overheatedMachines;
     }
 }
 ```
@@ -253,21 +259,25 @@ The `MiningMachine` class is a example of **encapsulation** in ShuhanMiner. It u
 **Example from Code:**
 ```javascript
 export class MiningMachine {
-    #ipAddress;
+   #ipAddress;
     #hashRate;
     #temperature;
     #model;
     #status;
+    #highTemperatureMode;
+    #alerts; // List of alert messages
 
-    constructor(ipAddress, hashRate, temperature, model, status) {
+      constructor(ipAddress, hashRate, temperature, model, status, highTemperatureMode) {
         this.#ipAddress = ipAddress;
-        this.#hashRate = hashRate;
+        this.#hashRate = Number(hashRate) || 0;;
         this.#temperature = temperature;
         this.#model = model;
         this.#status = status;
+        this.#highTemperatureMode = highTemperatureMode;
+        this.#alerts = []; // Store alert messages
     }
 
-    getTemperature() {
+   get temperature() {
         return this.#temperature;
     }
 }
@@ -295,16 +305,27 @@ ShuhanMiner applies **inheritance** in its reporting system. The `FinancialRepor
 
 **Example from Code:**
 ```javascript
-import { MonitoringReport } from './MonitoringReport.js';
-
+import { MonitoringReport } from './MonitoringReport.js';;
 export class FinancialReport extends MonitoringReport {
     #totalHashrate;
     #electricityCost;
     #revenue;
-
     constructor(monitoringSystem) {
         super(monitoringSystem);
         this.#calculateMetrics();
+    }
+
+    #calculateMetrics() {
+        const monitoringSystem = this.getMonitoringSystem();
+        this.#totalHashrate = monitoringSystem.getMachines().reduce((sum, machine) => sum + machine.hashRate, 0);
+        this.#electricityCost = monitoringSystem.getMachines().length * 0.1; // Simulated cost per machine
+        this.#revenue = (this.#totalHashrate * 0.05) - this.#electricityCost; // Simulated revenue calculation
+    }
+    generate() {
+            return `Financial Report:
+        - Total revenue: $${this.#revenue.toFixed(2)}
+        - Total hashrate: ${this.#totalHashrate} TH/s
+        - Electricity cost: $${this.#electricityCost.toFixed(2)}`;
     }
 }
 ```
@@ -333,7 +354,10 @@ class Dog extends Animal {
 ShuhanMiner utilizes **polymorphism** in its reporting system. The `MonitoringReportFactory` dynamically generates different types of reports (financial, performance) based on the input type. This ensures that different report types follow the same interface while executing their unique behaviors.
 **Example from Code:**
 ```javascript
+import {FinancialReport} from "./FinancialReport.js";
+import {PerformanceReport} from "./PerformanceReport.js";
 export class MonitoringReportFactory {
+    static factoryName = "Mining Report Factory"; // Custom factory property
     static generateReport(type, monitoringSystem) {
         switch (type.toLowerCase()) {
             case "financial":
@@ -341,7 +365,7 @@ export class MonitoringReportFactory {
             case "performance":
                 return new PerformanceReport(monitoringSystem);
             default:
-                throw new Error("Invalid report type");
+                throw new Error(`Invalid report type: ${type}`);
         }
     }
 }
