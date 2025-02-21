@@ -391,67 +391,56 @@ class Report {
 ## Open-Closed Principle (OCP)
 
 ### Why It's a Good Application of OOP
-The `MonitoringReport` class follows OCP by allowing new report types to be added without modifying its existing logic. Instead of modifying the base class, new report types can be introduced via subclassing.
+The `MonitoringReport` class is designed to be easily extended without modifying existing code. By defining `MonitoringReport` as an abstract class, new types of reports can be added without changing the base implementation, making the system flexible and scalable.
 
 **Example from Code:**
 ```javascript
-export class MonitoringReport {
-    #monitoringSystem;
-
-    constructor(monitoringSystem) {
-        if (new.target === MonitoringReport) {
-            throw new Error("Cannot instantiate an abstract class.");
-        }
-        this.#monitoringSystem = monitoringSystem;
-    }
-
+export class FinancialReport extends MonitoringReport {
     generate() {
-        throw new Error("Generate method must be implemented by subclasses.");
+        return "Generating Financial Report...";
+    }
+}
+
+export class PerformanceReport extends MonitoringReport {
+    generate() {
+        return "Generating Performance Report...";
     }
 }
 ```
 
-#### Hypothetical Example That Breaks OCP
+### Hypothetical Example That Breaks OCP
 ```javascript
-class Discount {
-    applyDiscount(customerType, price) {
-        if (customerType === "VIP") {
-            return price * 0.8;
+class Report {
+    generate(type) {
+        if (type === "financial") {
+            return "Generating Financial Report...";
+        } else if (type === "performance") {
+            return "Generating Performance Report...";
         } else {
-            return price * 0.9;
+            throw new Error("Invalid report type");
         }
     }
 }
 ```
-**Issue:** Adding new customer types requires modifying this class instead of extending it.
+**Issue:** Here, adding a new report type would require modifying `generate()`, violating OCP. Instead, it should be handled via subclassing.
 
 ---
 
 ## Liskov Substitution Principle (LSP)
 
 ### Why It's a Good Application of OOP
-The `MiningMachine` class is designed to allow different mining models to be extended while ensuring that they can be substituted without affecting system behavior.
+The `MonitoringReport` subclasses (`FinancialReport`, `PerformanceReport`) extend `MonitoringReport` without altering its expected behavior, ensuring they can be used interchangeably.
 
 **Example from Code:**
 ```javascript
-export class MiningMachine {
-    #ipAddress;
-    #hashRate;
-    #temperature;
-    #model;
-    #status;
-
-    constructor(ipAddress, hashRate, temperature, model, status) {
-        this.#ipAddress = ipAddress;
-        this.#hashRate = Number(hashRate) || 0;
-        this.#temperature = temperature;
-        this.#model = model;
-        this.#status = status;
+export class PerformanceReport extends MonitoringReport {
+    generate() {
+        return "Performance Data Generated";
     }
 }
 ```
 
-#### Hypothetical Example That Breaks LSP
+### Hypothetical Example That Breaks LSP
 ```javascript
 class Rectangle {
     constructor(width, height) {
@@ -465,79 +454,81 @@ class Rectangle {
         this.height = height;
     }
 }
+
 class Square extends Rectangle {
     setWidth(width) {
         this.width = this.height = width;
     }
 }
 ```
-**Issue:** `Square` modifies `setWidth()` in a way that changes expected behavior.
+**Issue:** `Square` overrides `setWidth()` in a way that changes the expected behavior of `Rectangle`, violating LSP.
 
 ---
 
 ## Interface Segregation Principle (ISP)
 
 ### Why It's a Good Application of OOP
-The `Observer` class in ShuhanMiner ensures that observers only implement relevant notification methods, preventing clients from being forced to depend on methods they do not use.
+The `Observer` class in ShuhanMiner follows ISP by providing a contract for notification receivers. However, if future implementations require different types of observers (e.g., `EmailObserver`, `SMSObserver`), the current structure could force classes to implement methods they don't need. A better approach is to create separate interfaces for different types of notification handlers.
 
-**Example from Code:**
+#### Suggested Refactor for ISP Compliance
 ```javascript
-export class Observer {
+// Define an interface for notification receivers
+export class INotificationReceiver {
     receiveNotification(notification) {
-        console.log("Notification received:", notification);
-        throw new Error("Method 'update' must be implemented.");
+        throw new Error("Method 'receiveNotification' must be implemented.");
     }
 }
-```
 
-#### Hypothetical Example That Breaks ISP
-```javascript
-class Worker {
-    work() {}
-    eat() {}
+// EmailObserver implements only the necessary methods
+export class EmailObserver extends INotificationReceiver {
+    receiveNotification(notification) {
+        console.log("Email received:", notification);
+    }
 }
-class Robot extends Worker {
-    eat() {
-        throw new Error("Robots do not eat!");
+
+// SMSObserver implements only the necessary methods
+export class SMSObserver extends INotificationReceiver {
+    receiveNotification(notification) {
+        console.log("SMS received:", notification);
     }
 }
 ```
-**Issue:** The `Robot` class is forced to implement a method (`eat()`) it doesn't need.
 
 ---
 
 ## Dependency Inversion Principle (DIP)
 
 ### Why It's a Good Application of OOP
-The `Observer` class adheres to DIP by ensuring that high-level modules depend on abstractions rather than concrete implementations.
+The `MonitoringReportFactory` follows DIP by ensuring that high-level modules depend on an abstract `MonitoringReport`, rather than concrete implementations of `MonitoringSystem`. This allows easy extension and substitution of different report types without modifying existing logic.
 
 **Example from Code:**
 ```javascript
-export class Observer {
-    receiveNotification(notification) {
-        console.log("Notification received:", notification);
-        throw new Error("Method 'update' must be implemented.");
+export class MonitoringReportFactory {
+    static generateReport(type, monitoringSystem) {
+        switch (type.toLowerCase()) {
+            case "financial":
+                return new FinancialReport(monitoringSystem);
+            case "performance":
+                return new PerformanceReport(monitoringSystem);
+            default:
+                throw new Error("Invalid report type");
+        }
     }
 }
 ```
 
-#### Hypothetical Example That Breaks DIP
+### Hypothetical Example That Breaks DIP
 ```javascript
-class FileLogger {
-    log(message) {
-        console.log(`Logging to file: ${message}`);
+class FinancialReport {
+    constructor(monitoringSystem) {
+        this.monitoringSystem = monitoringSystem;
     }
-}
-class UserService {
-    constructor() {
-        this.logger = new FileLogger();
-    }
-    registerUser(username) {
-        this.logger.log(`User ${username} registered`);
+
+    generate() {
+        const data = this.monitoringSystem.getData();
+        return `Financial Report: ${data}`;
     }
 }
 ```
-**Issue:** `UserService` is tightly coupled to `FileLogger`, making it hard to switch to another logging mechanism.
-
-By following SOLID principles correctly, ShuhanMiner ensures that its mining monitoring system is modular, scalable, and easy to maintain.
+**Issue:** `FinancialReport` directly depends on `MonitoringSystem`, making it hard to extend or replace `MonitoringSystem` with another data source, violating DIP.
 
