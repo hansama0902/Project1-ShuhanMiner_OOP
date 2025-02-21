@@ -339,210 +339,205 @@ class Penguin extends Bird {
 
 ---
 
-By following OOP principles correctly, ShuhanMiner ensures that its mining monitoring system is modular, scalable, and easy to maintain.
+By following OOP principles correctly, ShuhanMiner ensures that its mining monitoring system is modular, scalable, and easy to maintain.  
 
-# OOP Principles in the Mining System Code
+# SOLID Principles in ShuhanMiner
 
-## 1. Single Responsibility Principle (SRP)
+## Single Responsibility Principle (SRP)
 
-### **Example from the Code**
-**File: `ElectricityPricing.js`**
+### Why It's a Good Application of OOP
+The `User` class in ShuhanMiner follows SRP by only handling user-related notifications. It does not handle notification management, which is managed separately by the `NotificationManager`. This ensures that the user-related logic remains focused and isolated.
+
+**Example from Code:**
 ```javascript
-export class ElectricityPricing {
-    #currentPrice;
-    #costThreshold;
-    #priceHistory;
+import { Observer } from "./Observer.js";
+export class User extends Observer {
+    #userId;
+    #role;
+    #notifications;
 
-    constructor(initialPrice, costThreshold) {
-        this.#currentPrice = initialPrice;
-        this.#costThreshold = costThreshold;
-        this.#priceHistory = [];
+    constructor(userId, role) {
+        super();
+        this.#userId = userId;
+        this.#role = role;
+        this.#notifications = [];
     }
 
-    updatePrice(newPrice) {
-        this.#currentPrice = newPrice;
-        this.#priceHistory.push(newPrice);
-    }
-}
-```
-**Why this is a good example?**
-- The `ElectricityPricing` class has a **single responsibility**: tracking and updating electricity prices.
-- It does not manage alerts, financial reports, or any unrelated logic.
-
-### **Bad Example (Breaking SRP)**
-```javascript
-class ElectricityPricing {
-    constructor() {
-        this.currentPrice = 0;
-        this.alerts = [];
-    }
-
-    updatePrice(newPrice) {
-        this.currentPrice = newPrice;
-        if (newPrice > 100) {
-            this.alerts.push("High electricity price alert!");
+    receiveNotification(notification) {
+        if (!notification || typeof notification.content !== "string") {
+            throw new Error("Invalid notification object. Expected { content: string }.");
         }
+        this.#notifications.push(notification);
+        console.log(`User ${this.#userId} received notification: ${notification.content}`);
     }
 }
 ```
-- **Issue:** The class is responsible for both tracking prices and handling alerts.
-- **Fix:** Move alert logic to a separate class, such as `ElectricityAlert`.
+
+#### Hypothetical Example That Breaks SRP
+```javascript
+class Report {
+    generateReport() {
+        return "Report Data";
+    }
+    saveToFile(filename) {
+        fs.writeFileSync(filename, this.generateReport());
+    }
+}
+```
+**Issue:** This class handles both report generation and file saving, violating SRP.
 
 ---
 
-## 2. Open–Closed Principle (OCP)
+## Open-Closed Principle (OCP)
 
-### **Example from the Code**
-**File: `MonitoringReport.js`**
+### Why It's a Good Application of OOP
+The `MonitoringReport` class follows OCP by allowing new report types to be added without modifying its existing logic. Instead of modifying the base class, new report types can be introduced via subclassing.
+
+**Example from Code:**
 ```javascript
 export class MonitoringReport {
     #monitoringSystem;
 
     constructor(monitoringSystem) {
         if (new.target === MonitoringReport) {
-            throw new Error("Cannot instantiate abstract class MonitoringReport");
+            throw new Error("Cannot instantiate an abstract class.");
         }
         this.#monitoringSystem = monitoringSystem;
     }
 
-    generateReport() {
-        throw new Error("Method 'generateReport()' must be implemented.");
+    generate() {
+        throw new Error("Generate method must be implemented by subclasses.");
     }
 }
 ```
 
-**Why this is a good example?**
-- The `MonitoringReport` class is **open for extension** (new reports can be added by subclassing) but **closed for modification** (base class remains unchanged).
-- `FinancialReport` and `PerformanceReport` extend `MonitoringReport` without modifying it.
-
-### **Bad Example (Breaking OCP)**
+#### Hypothetical Example That Breaks OCP
 ```javascript
-class MonitoringReport {
-    constructor() {
-        this.reportType = "generic";
-    }
-    generateReport() {
-        if (this.reportType === "financial") {
-            return "Financial Report";
-        } else if (this.reportType === "performance") {
-            return "Performance Report";
+class Discount {
+    applyDiscount(customerType, price) {
+        if (customerType === "VIP") {
+            return price * 0.8;
+        } else {
+            return price * 0.9;
         }
     }
 }
 ```
-- **Issue:** Every time we add a new report type, we must modify `generateReport()`.
-- **Fix:** Use inheritance like in our original code.
+**Issue:** Adding new customer types requires modifying this class instead of extending it.
 
 ---
 
-## 3. Liskov Substitution Principle (LSP)
+## Liskov Substitution Principle (LSP)
 
-### **Example from the Code**
-**File: `MiningMachine.js`**
+### Why It's a Good Application of OOP
+The `MiningMachine` class is designed to allow different mining models to be extended while ensuring that they can be substituted without affecting system behavior.
+
+**Example from Code:**
 ```javascript
 export class MiningMachine {
-    restart() {
-        console.log("Restarting machine...");
-    }
-}
-```
-**File: `AdvancedMiningMachine.js`**
-```javascript
-import { MiningMachine } from "./MiningMachine.js";
+    #ipAddress;
+    #hashRate;
+    #temperature;
+    #model;
+    #status;
 
-export class AdvancedMiningMachine extends MiningMachine {
-    restart() {
-        console.log("Restarting advanced machine with additional safety checks...");
+    constructor(ipAddress, hashRate, temperature, model, status) {
+        this.#ipAddress = ipAddress;
+        this.#hashRate = Number(hashRate) || 0;
+        this.#temperature = temperature;
+        this.#model = model;
+        this.#status = status;
     }
 }
 ```
-**Why this is a good example?**
-- `AdvancedMiningMachine` **inherits** from `MiningMachine`.
-- It **overrides** `restart()` while maintaining expected behavior.
-- **Any code using `MiningMachine` can also use `AdvancedMiningMachine` without issues.**
 
-### **Bad Example (Breaking LSP)**
+#### Hypothetical Example That Breaks LSP
 ```javascript
-class BasicMachine {
-    restart() {
-        throw new Error("This machine cannot be restarted!");
+class Rectangle {
+    constructor(width, height) {
+        this.width = width;
+        this.height = height;
+    }
+    setWidth(width) {
+        this.width = width;
+    }
+    setHeight(height) {
+        this.height = height;
+    }
+}
+class Square extends Rectangle {
+    setWidth(width) {
+        this.width = this.height = width;
     }
 }
 ```
-- **Issue:** If `BasicMachine` is used in place of `MiningMachine`, it will break functionality.
-- **Fix:** All subclasses should maintain expected behavior when substituted.
+**Issue:** `Square` modifies `setWidth()` in a way that changes expected behavior.
 
 ---
 
-## 4. Interface Segregation Principle (ISP)
+## Interface Segregation Principle (ISP)
 
-### **Example from the Code**
-**File: `Observer.js`**
+### Why It's a Good Application of OOP
+The `Observer` class in ShuhanMiner ensures that observers only implement relevant notification methods, preventing clients from being forced to depend on methods they do not use.
+
+**Example from Code:**
 ```javascript
 export class Observer {
-    update(notification) {
-        throw new Error("Method 'update()' must be implemented.");
+    receiveNotification(notification) {
+        console.log("Notification received:", notification);
+        throw new Error("Method 'update' must be implemented.");
     }
 }
 ```
-**File: `User.js`**
-```javascript
-import { Observer } from "./Observer.js";
-export class User extends Observer {
-    update(notification) {
-        console.log("New notification:", notification);
-    }
-}
-```
-**Why this is a good example?**
-- The `Observer` interface only contains `update()`, ensuring that `User` does not implement unnecessary methods.
-- **Prevents bloated interfaces.**
 
-### **Bad Example (Breaking ISP)**
+#### Hypothetical Example That Breaks ISP
 ```javascript
-class Observer {
-    update(notification) {}
-    logNotification(notification) {}
-    saveNotification(notification) {}
+class Worker {
+    work() {}
+    eat() {}
+}
+class Robot extends Worker {
+    eat() {
+        throw new Error("Robots do not eat!");
+    }
 }
 ```
-- **Issue:** All implementations must define `logNotification()` and `saveNotification()`, even if they don’t need them.
-- **Fix:** Split responsibilities into smaller interfaces.
+**Issue:** The `Robot` class is forced to implement a method (`eat()`) it doesn't need.
 
 ---
 
-## 5. Dependency Inversion Principle (DIP)
+## Dependency Inversion Principle (DIP)
 
-### **Example from the Code**
-**File: `Observer.js`**
+### Why It's a Good Application of OOP
+The `Observer` class adheres to DIP by ensuring that high-level modules depend on abstractions rather than concrete implementations.
+
+**Example from Code:**
 ```javascript
 export class Observer {
-    update(notification) {
-        throw new Error("Method 'update()' must be implemented.");
+    receiveNotification(notification) {
+        console.log("Notification received:", notification);
+        throw new Error("Method 'update' must be implemented.");
     }
 }
 ```
-**File: `User.js`**
-```javascript
-import { Observer } from "./Observer.js";
-export class User extends Observer {
-    update(notification) {
-        console.log("New notification:", notification);
-    }
-}
-```
-**Why this is a good example?**
-- `User` depends on an **abstraction (`Observer`)**, not a concrete `NotificationManager`.
-- **High-level modules (like User) do not directly depend on low-level modules.**
 
-### **Bad Example (Breaking DIP)**
+#### Hypothetical Example That Breaks DIP
 ```javascript
-class User {
+class FileLogger {
+    log(message) {
+        console.log(`Logging to file: ${message}`);
+    }
+}
+class UserService {
     constructor() {
-        this.notificationManager = new NotificationManager();
+        this.logger = new FileLogger();
+    }
+    registerUser(username) {
+        this.logger.log(`User ${username} registered`);
     }
 }
 ```
-- **Issue:** `User` is directly coupled with `NotificationManager`, making changes difficult.
-- **Fix:** Depend on an interface (`Observer`) instead.
+**Issue:** `UserService` is tightly coupled to `FileLogger`, making it hard to switch to another logging mechanism.
+
+By following SOLID principles correctly, ShuhanMiner ensures that its mining monitoring system is modular, scalable, and easy to maintain.
 
